@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b5354146-d616-4f68-bda2-889a3d55ddce" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="module-info" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1i8m02ReemONWnc4OFe9fp4DD3b" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="D:/Installations/javafx-sdk-14.0.2.1/lib" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pathVariables" />
+  </component>
+  <component name="RunManager" selected="Spring Boot.PacMenRestApplication">
+    <configuration name="PacMenRestApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="PacMenREST" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.fhict.pacmenrest.PacMenRestApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PacMenServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="PacMenServer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.fhict.pacmenserver.PacMenServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b5354146-d616-4f68-bda2-889a3d55ddce" name="Default Changelist" comment="" />
+      <created>1601297366370</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1601297366370</updated>
+      <workItem from="1601297369685" duration="2799000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="381" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601299794259">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="381" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/364.-1080.1536.824@0.0.1920.1040" timestamp="1601299794259" />
+    <state x="666" y="261" key="FileChooserDialogImpl" timestamp="1601299515202">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="666" y="261" key="FileChooserDialogImpl/0.0.1920.1040/364.-1080.1536.824@0.0.1920.1040" timestamp="1601299515202" />
+    <state width="1877" height="199" key="GridCell.Tab.0.bottom" timestamp="1601300172996">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="199" key="GridCell.Tab.0.bottom/0.0.1920.1040/364.-1080.1536.824@0.0.1920.1040" timestamp="1601300172996" />
+    <state width="1877" height="199" key="GridCell.Tab.0.center" timestamp="1601300172996">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="199" key="GridCell.Tab.0.center/0.0.1920.1040/364.-1080.1536.824@0.0.1920.1040" timestamp="1601300172996" />
+    <state width="1877" height="199" key="GridCell.Tab.0.left" timestamp="1601300172996">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="199" key="GridCell.Tab.0.left/0.0.1920.1040/364.-1080.1536.824@0.0.1920.1040" timestamp="1601300172996" />
+    <state width="1877" height="199" key="GridCell.Tab.0.right" timestamp="1601300172996">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="199" key="GridCell.Tab.0.right/0.0.1920.1040/364.-1080.1536.824@0.0.1920.1040" timestamp="1601300172996" />
+    <state x="440" y="94" key="SettingsEditor" timestamp="1601300029241">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/364.-1080.1536.824@0.0.1920.1040" timestamp="1601300029241" />
+    <state x="488" y="89" key="new project wizard" timestamp="1601299145993">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="488" y="89" key="new project wizard/0.0.1920.1040/364.-1080.1536.824@0.0.1920.1040" timestamp="1601299145993" />
+  </component>
+</project>
