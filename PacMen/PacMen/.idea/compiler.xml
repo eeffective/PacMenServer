@@ -6,9 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="pacmenrest" />
         <module name="PacMenGUI" />
         <module name="PacMenREST" />
         <module name="PacMenServer" />
+        <module name="pacmenserver" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,6 +21,8 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="PacMenREST" options="-parameters" />
       <module name="PacMenServer" options="-parameters" />
+      <module name="pacmenrest" options="-parameters" />
+      <module name="pacmenserver" options="-parameters" />
     </option>
   </component>
 </project>
