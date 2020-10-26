@@ -1,14 +1,27 @@
 package fhict.rest.models;
 
-import java.io.Serializable;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "Score")
 public class Score{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "score")
     private int score;
 
-    public Score(String name, int score){
-        this.name = name;
-        this.score = score;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
