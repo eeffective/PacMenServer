@@ -45,11 +45,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b5354146-d616-4f68-bda2-889a3d55ddce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../rest/src/main/java/fhict/rest/controllers/ScoreController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../rest/src/main/java/fhict/rest/models/Score.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../rest/src/main/java/fhict/rest/services/ScoreService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PacMenREST/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PacMenREST/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +88,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="11" />
-    <property name="last_opened_file_path" value="D:/Installations/javafx-sdk-14.0.2.1/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -106,19 +102,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.PacMenRestApplication">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="PacMenRestApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="pacmenrest" />
       <extension name="coverage">
@@ -205,9 +188,10 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="673" y="261" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1160/-1600.542.1600.860/1920.532.1440.860@0.0.1920.1160" timestamp="1602576702081" />
-    <state x="666" y="291" key="FileChooserDialogImpl" timestamp="1603633227025">
-      <screen x="0" y="0" width="1920" height="1160" />
+    <state x="666" y="261" key="FileChooserDialogImpl" timestamp="1603715835372">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="666" y="261" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603715835372" />
     <state x="666" y="261" key="FileChooserDialogImpl/0.0.1920.1040/364.-1080.1536.824@0.0.1920.1040" timestamp="1601299515202" />
     <state x="666" y="291" key="FileChooserDialogImpl/0.0.1920.1160/-1600.542.1600.860/1920.532.1440.860@0.0.1920.1160" timestamp="1603633227025" />
     <state width="1069" height="222" key="GridCell.Tab.0.bottom" timestamp="1603634262842">
