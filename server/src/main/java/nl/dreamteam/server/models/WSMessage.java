@@ -6,6 +6,18 @@ import lombok.Setter;
 
 public class WSMessage {
 
+    @Getter
+    @Setter
+    private Integer userId;
+
+    @Getter
+    @Setter
+    private Integer x;
+
+    @Getter
+    @Setter
+    private Integer y;
+
     @Setter
     @Getter
     private String message;
@@ -20,4 +32,9 @@ public class WSMessage {
     }
 }
 
+/*
+    Geest + muur = client
+    Pacman + muur = cient
+    Pacman + Geest = client
+ */
 

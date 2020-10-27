@@ -11,7 +11,11 @@ public class WSMessageController {
     @MessageMapping("/pacmen")
     @SendTo("topic/wsmessages")
     public WSMessage sendWSMessage(WSMessage message) throws Exception {
-        Thread.sleep(1000);
         return new WSMessage(message.getMessage(), message.getMessageType());
     }
+
 }
+
+
+// client 1 verzendt wsmessage met x1 y2
+// client 2 krijgt x1 y2

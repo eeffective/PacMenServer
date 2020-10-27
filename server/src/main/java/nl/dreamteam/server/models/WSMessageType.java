@@ -2,10 +2,10 @@ package nl.dreamteam.server.models;
 
 public enum WSMessageType {
 
-    PLAYER_UP,
-    PLAYER_DOWN,
-    PLAYER_RIGHT,
-    PLAYER_LEFT,
+    MOVE_UP,
+    MOVE_DOWN,
+    MOVE_RIGHT,
+    MOVE_LEFT,
     GAME_START,
-    SCORE_INCREASE,
+    GAME_OVER
 }
