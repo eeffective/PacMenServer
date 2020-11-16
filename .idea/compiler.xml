@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="rest" />
         <module name="server" />
-        <module name="PacmenShared" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">

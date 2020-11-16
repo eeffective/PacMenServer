@@ -1,4 +1,4 @@
-package models;
+package nl.dreamteam.server.models;
 
 import javax.websocket.Session;
 import java.util.ArrayList;
@@ -7,12 +7,14 @@ public class Game {
     private ArrayList<Player> playerList = new ArrayList<>();
     private ArrayList<Session> sessions = new ArrayList<>();
 
-    public boolean AddSession(Session session){
-        if (!GameIsFull()){
-            sessions.add(session);
-            return true;
+    private int Id;
+
+    public void AddSession(Session session){
+        for (Session s : sessions){
+            if (s.getId() == session.getId()){
+                sessions.add(session);
+            }
         }
-        return false;
     }
 
     public void JoinGame(Player player){
@@ -29,5 +31,13 @@ public class Game {
 
     public ArrayList<Player> getPlayerList() {
         return playerList;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
     }
 }

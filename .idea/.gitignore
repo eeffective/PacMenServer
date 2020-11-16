@@ -2,7 +2,7 @@
 /shelf/
 /workspace.xml
 # Datasource local storage ignored files
-/../../../../../../../:\Programmeren\Semester 3\Proftaak\PacMen\PacMen\.idea/dataSources/
+/../../../../:\GitHub\PacMen\.idea/dataSources/
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
