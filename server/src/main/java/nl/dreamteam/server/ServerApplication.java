@@ -7,6 +7,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainerInitializer;
 import javax.websocket.server.ServerContainer;
 
+
 public class ServerApplication {
     private static void startWebSocketServer() {
         Server webSocketServer = new Server();

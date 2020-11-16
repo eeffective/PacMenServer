@@ -18,6 +18,6 @@ public class ServerLogicHandler {
 
     public void JoinGame(Game game, WebsocketDTO dto, Session session) {
         game.JoinGame(dto.getPlayer());
-        messageSender.ShowLobbyPlayers(session);
+        messageSender.ShowLobbyPlayers(session, dto);
     }
 }
