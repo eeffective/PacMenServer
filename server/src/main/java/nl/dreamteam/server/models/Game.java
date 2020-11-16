@@ -18,7 +18,7 @@ public class Game {
     }
 
     public void JoinGame(Player player){
-        playerList.add(player);
+        if (!GameIsFull()){ playerList.add(player);}
     }
 
     public boolean GameIsFull(){
