@@ -1,6 +1,6 @@
-package models;
+package nl.dreamteam.server.models;
 
-import Enums.Type;
+import nl.dreamteam.server.Enums.Type;
 
 public class Player {
     private String name;
