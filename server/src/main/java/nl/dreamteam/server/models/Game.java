@@ -1,5 +1,7 @@
 package nl.dreamteam.server.models;
 
+import nl.dreamteam.server.Enums.Type;
+
 import javax.websocket.Session;
 import java.util.ArrayList;
 
@@ -9,24 +11,36 @@ public class Game {
 
     private int Id;
 
-    public void AddSession(Session session){
-        for (Session s : sessions){
-            if (s.getId() == session.getId()){
-                sessions.add(session);
-            }
-        }
+    public Game() {
     }
 
+    public Game(int id) {
+        Id = id;
+    }
+
+    //    public void AddSession(Session session){
+//        for (Session s : sessions){
+//            if (s.getId() == session.getId()){
+//                sessions.add(session);
+//            }
+//        }
+//    }
+
     public void JoinGame(Player player){
-        if (!GameIsFull()){ playerList.add(player);}
+        playerList.add(player);
     }
 
     public boolean GameIsFull(){
-        return playerList.size() == 4;
+        return playerList.size() == 5;
     }
 
-    public ArrayList<Session> getSessions() {
-        return sessions;
+    public boolean GameContainsPacman(){
+        for (Player p : playerList){
+            if (p.getType() == Type.PACMAN){
+                return true;
+            }
+        }
+        return false;
     }
 
     public ArrayList<Player> getPlayerList() {

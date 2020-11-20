@@ -1,10 +1,16 @@
 package nl.dreamteam.server.models;
 
+
 import nl.dreamteam.server.Enums.Type;
 
 public class Player {
     private String name;
     private Type type;
+
+    public Player(String name, Type type) {
+        this.name = name;
+        this.type = type;
+    }
 
     public String getName() {
         return name;

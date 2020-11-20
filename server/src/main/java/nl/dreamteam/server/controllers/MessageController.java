@@ -32,12 +32,14 @@ public class MessageController {
     @SendTo("/topic/lobby")
     public Message JoinLobby(int gameId, Player player){
         Message message = new Message();
-
-        if (games.size() == 0){ games.add(new Game()); }
+        
+        if (games.size() == 0){ games.add(new Game(games.size() + 1)); }
         for (Game g : games){
             if (g.getId() == gameId){
-                g.JoinGame(player);
-                message.playerList.addAll(g.getPlayerList());
+                if (!g.GameContainsPacman() && !g.GameIsFull()) {
+                    g.JoinGame(player);
+                    message.playerList.addAll(g.getPlayerList());
+                }
             }
         }
         return message;
@@ -52,6 +54,17 @@ public class MessageController {
                 message.playerList = g.getPlayerList();
             }
         }
+        return message;
+    }
+
+    @MessageMapping("/makeLobby")
+    @SendTo("/topic/lobby")
+    public Message MakeLobby(){
+        Message message = new Message();
+        Game game = new Game(games.size() + 1);
+
+        games.add(game);
+        message.lobbyList = games;
         return message;
     }
 }
