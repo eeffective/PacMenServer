@@ -67,4 +67,21 @@ public class MessageController {
         message.lobbyList = games;
         return message;
     }
+
+    @MessageMapping("/loseLife")
+    @SendTo("/topic/game")
+    public Message LoseLife(int gameId, Player player){
+        Message message = new Message();
+        for (Game g : games){
+            if (gameId == g.getId()){
+                for (Player p : g.getPlayerList()){
+                    if (player.getId() == p.getId()){
+                        p.loseLife();
+                        message.playerList = g.getPlayerList();
+                    }
+                }
+            }
+        }
+        return message;
+    }
 }

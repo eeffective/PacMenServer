@@ -7,6 +7,7 @@ public class Message {
 
     public ArrayList<Player> playerList;
     public ArrayList<Game> lobbyList;
+
     public Integer id;
 
     public Integer x;

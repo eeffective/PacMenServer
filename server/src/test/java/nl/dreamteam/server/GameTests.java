@@ -3,7 +3,6 @@ package nl.dreamteam.server;
 
 import nl.dreamteam.server.Enums.Type;
 import nl.dreamteam.server.models.Game;
-import nl.dreamteam.server.models.Message;
 import nl.dreamteam.server.models.Player;
 import org.junit.Assert;
 import org.junit.Before;
