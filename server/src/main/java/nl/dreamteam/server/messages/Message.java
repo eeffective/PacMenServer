@@ -12,8 +12,8 @@ public class Message {
     public int lobbyId;
     public String username;
     public MessageType messageType;
-
-//    public ArrayList<Player> playerList;
+    public ArrayList<String> players;
+    public String host;
 //
 //    public Integer id;
 //

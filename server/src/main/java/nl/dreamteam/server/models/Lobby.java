@@ -24,11 +24,11 @@ public class Lobby {
 //        }
 //    }
 
-    public void addPlayer(String username){
+    public void addPlayer(String username) {
         players.add(username);
     }
 
-//    public boolean lobbyIsFull(){
+    //    public boolean lobbyIsFull(){
 //        return players.size() == 5;
 //    }
 //
@@ -47,5 +47,9 @@ public class Lobby {
 //
     public int getId() {
         return id;
+    }
+
+    public ArrayList<String> getPlayers() {
+        return players;
     }
 }
