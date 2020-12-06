@@ -1,53 +1,56 @@
 package nl.dreamteam.server.models;
 
 
-import nl.dreamteam.server.Enums.Type;
+import nl.dreamteam.server.Enums.PlayerType;
 
 public class Player {
-    private int Id;
-    private String name;
-    private Type type;
+    private String username;
+    private PlayerType playerType;
+    private int lives;
+    private boolean isHost;
 
-    private int Life;
-
-    public Player(String name, Type type) {
-        this.name = name;
-        this.type = type;
-        Life = 3;
+    public Player(String username) {
+        this.username = username;
+        this.lives = 3;
+        this.isHost = false;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return this.username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public PlayerType getPlayerType() {
+        return this.playerType;
     }
 
-    public Type getType() {
-        return type;
+    public int getLives() {
+        return this.lives;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public boolean getIsHost() {
+        return this.isHost;
     }
 
-    public void loseLife() {
-        this.Life -= 1;
+    public void setHost() {
+        this.isHost = true;
     }
 
-    public int getId() {
-        return Id;
+    public void setPlayerType(PlayerType playerType) {
+        this.playerType = playerType;
     }
 
-    public int getLife() {
-        return Life;
-    }
-
-    public boolean isDead() {
-        if (Life == 0){
-            return true;
-        }
-        return false;
-    }
+//    public void loseLife() {
+//        this.lives -= 1;
+//    }
+//
+//    public int getLife() {
+//        return this.lives;
+//    }
+//
+//    public boolean isDead() {
+//        if (this.lives == 0){
+//            return true;
+//        }
+//        return false;
+//    }
 }

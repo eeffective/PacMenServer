@@ -1,6 +1,6 @@
 package nl.dreamteam.server.Enums;
 
-public enum Type {
+public enum PlayerType {
     PACMAN,
     GHOST
 }

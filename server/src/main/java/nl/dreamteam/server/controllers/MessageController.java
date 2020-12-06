@@ -35,8 +35,11 @@ public class MessageController {
         messageOut.messageType = MessageType.JOIN_LOBBY;
         messageOut.players = logic.getPlayers(messageIn.lobbyId);
         messageOut.lobbyId = messageIn.lobbyId;
-        messageOut.host = messageOut.players.get(0);
-        simpMessagingTemplate.convertAndSend(messageIn.to, messageOut);
+        for(Player p : messageOut.players){
+            String to = "/topic/" + p.getUsername();
+            System.out.println("to = " + to);
+            simpMessagingTemplate.convertAndSend(to, messageOut);
+        }
     }
 
     @MessageMapping("/createLobby")
@@ -45,24 +48,24 @@ public class MessageController {
         messageOut.lobbyId = logic.createLobbyAndReturnId(messageIn.username);
         messageOut.players = logic.getPlayers(messageOut.lobbyId);
         messageOut.messageType = MessageType.CREATE_LOBBY;
-        messageOut.host = messageIn.username;
+        System.out.println(messageIn.to);
         simpMessagingTemplate.convertAndSend(messageIn.to, messageOut);
     }
 
-    @MessageMapping("/loseLife")
-    @SendTo("/topic/game")
-    public Message LoseLife(int gameId, Player player){
-        Message message = new Message();
-        for (Game g : games){
-            if (gameId == g.getId()){
-                for (Player p : g.getPlayerList()){
-                    if (player.getId() == p.getId()){
-                        p.loseLife();
-                        message.playerList = g.getPlayerList();
-                    }
-                }
-            }
-        }
-        return message;
-    }
+//    @MessageMapping("/loseLife")
+//    @SendTo("/topic/game")
+//    public Message LoseLife(int gameId, Player player){
+//        Message message = new Message();
+//        for (Game g : games){
+//            if (gameId == g.getId()){
+//                for (Player p : g.getPlayerList()){
+//                    if (player.getId() == p.getId()){
+//                        p.loseLife();
+//                        message.playerList = g.getPlayerList();
+//                    }
+//                }
+//            }
+//        }
+//        return message;
+//    }
 }
