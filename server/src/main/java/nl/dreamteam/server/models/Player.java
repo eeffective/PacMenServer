@@ -8,6 +8,8 @@ public class Player {
     private PlayerType playerType;
     private int lives;
     private boolean isHost;
+    private int x;
+    private int y;
 
     public Player(String username) {
         this.username = username;
@@ -39,7 +41,23 @@ public class Player {
         this.playerType = playerType;
     }
 
-//    public void loseLife() {
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    //    public void loseLife() {
 //        this.lives -= 1;
 //    }
 //

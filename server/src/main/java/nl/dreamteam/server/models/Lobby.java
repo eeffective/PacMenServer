@@ -1,11 +1,8 @@
 package nl.dreamteam.server.models;
-
-import javax.websocket.Session;
 import java.util.ArrayList;
 
 public class Lobby {
     private ArrayList<Player> players = new ArrayList<>();
-    private ArrayList<Session> sessions = new ArrayList<>();
 
     private int id;
 
