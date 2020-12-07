@@ -52,6 +52,29 @@ public class MessageController {
         simpMessagingTemplate.convertAndSend(messageIn.to, messageOut);
     }
 
+    @MessageMapping("/loseLife")
+    public void loseLife(Message in){
+        Message out = new Message();
+        Lobby lobby = logic.getLobby(in.lobbyId);
+        Player player = logic.getByName(in.username, lobby);
+
+        logic.loseLife(player);
+
+        if (player.getAlive()){
+            out.messageType = MessageType.LOSE_LIFE;
+        } else {
+            out.messageType = MessageType.DEAD;
+        }
+
+        out.players = lobby.getPlayers();
+
+        for (Player p : lobby.getPlayers()){
+            String to = "/topic/" + p.getUsername();
+            System.out.println("to = " + to);
+            simpMessagingTemplate.convertAndSend(to, out);
+        }
+    }
+
 //    @MessageMapping("/loseLife")
 //    @SendTo("/topic/game")
 //    public Message LoseLife(int gameId, Player player){
