@@ -41,7 +41,7 @@ public class Logic {
     }
 
     public Player getByName(String username, Lobby lobby){
-        return lobby.getPlayers().stream().filter(p -> p.getUsername() == username).findFirst().get();
+        return lobby.getPlayers().stream().filter(p -> p.getUsername().equals(username)).findFirst().get();
     }
 
     public ArrayList<Player> getIrrelevantPlayers(String username, Lobby lobby){
