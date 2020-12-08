@@ -22,4 +22,8 @@ public class Lobby {
     public ArrayList<Player> getPlayers() {
         return players;
     }
+
+    public Player getPlayer(String username){
+        return players.stream().filter(p -> p.getUsername() == username).findAny().get();
+    }
 }

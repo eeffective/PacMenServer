@@ -1,21 +1,19 @@
 package nl.dreamteam.server.controllers;
 
 import nl.dreamteam.server.Enums.MessageType;
-import nl.dreamteam.server.Logic;
+import nl.dreamteam.server.logic.LobbyLogic;
+import nl.dreamteam.server.logic.MovementLogic;
 import nl.dreamteam.server.messages.Message;
 import nl.dreamteam.server.models.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-
-import java.util.ArrayList;
 
 @Controller
 public class MessageController {
     private final SimpMessagingTemplate simpMessagingTemplate;
-    private final Logic logic = new Logic();
+    private final LobbyLogic lobbyLogic = new LobbyLogic();
+    private final MovementLogic movementLogic = new MovementLogic(lobbyLogic);
 
     public MessageController(SimpMessagingTemplate simpMessagingTemplate) {
         this.simpMessagingTemplate = simpMessagingTemplate;
@@ -24,20 +22,26 @@ public class MessageController {
     @MessageMapping("/move")
     public void movementUpdate(Message messageIn) {
         Message messageOut = new Message();
+        Player player = lobbyLogic.getLobby(messageIn.lobbyId).getPlayer(messageIn.username);
         messageOut.messageType = MessageType.MOVE;
-        simpMessagingTemplate.convertAndSend(messageIn.to, messageIn);
+        messageOut.username = player.getUsername();
+        movementLogic.move(player, messageIn.position);
+        messageOut.position = player.getPosition();
+        for(Player p : messageOut.players){
+            String to = "/topic/" + p.getUsername();
+            simpMessagingTemplate.convertAndSend(to, messageOut);
+        }
     }
 
     @MessageMapping("/joinLobby")
     public void JoinLobby(Message messageIn) {
-        logic.joinLobby(messageIn.lobbyId, messageIn.username);
+        lobbyLogic.joinLobby(messageIn.lobbyId, messageIn.username);
         Message messageOut = new Message();
         messageOut.messageType = MessageType.JOIN_LOBBY;
-        messageOut.players = logic.getPlayers(messageIn.lobbyId);
+        messageOut.players = lobbyLogic.getPlayers(messageIn.lobbyId);
         messageOut.lobbyId = messageIn.lobbyId;
         for(Player p : messageOut.players){
             String to = "/topic/" + p.getUsername();
-            System.out.println("to = " + to);
             simpMessagingTemplate.convertAndSend(to, messageOut);
         }
     }
@@ -45,8 +49,8 @@ public class MessageController {
     @MessageMapping("/createLobby")
     public void CreateLobby(Message messageIn) {
         Message messageOut = new Message();
-        messageOut.lobbyId = logic.createLobbyAndReturnId(messageIn.username);
-        messageOut.players = logic.getPlayers(messageOut.lobbyId);
+        messageOut.lobbyId = lobbyLogic.createLobbyAndReturnId(messageIn.username);
+        messageOut.players = lobbyLogic.getPlayers(messageOut.lobbyId);
         messageOut.messageType = MessageType.CREATE_LOBBY;
         System.out.println(messageIn.to);
         simpMessagingTemplate.convertAndSend(messageIn.to, messageOut);

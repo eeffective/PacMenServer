@@ -8,8 +8,20 @@ public class Player {
     private PlayerType playerType;
     private int lives;
     private boolean isHost;
+<<<<<<< Updated upstream
     private int x;
     private int y;
+=======
+    private Point position;
+
+    public void setPosition(Point position){
+        this.position = position;
+    }
+
+    public Point getPosition(){
+        return this.position;
+    }
+>>>>>>> Stashed changes
 
     public Player(String username) {
         this.username = username;

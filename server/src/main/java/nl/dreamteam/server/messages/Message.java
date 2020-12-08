@@ -4,6 +4,7 @@ package nl.dreamteam.server.messages;
 import nl.dreamteam.server.Enums.MessageType;
 import nl.dreamteam.server.models.Lobby;
 import nl.dreamteam.server.models.Player;
+import nl.dreamteam.server.models.Point;
 
 import java.util.ArrayList;
 
@@ -13,12 +14,7 @@ public class Message {
     public String username;
     public MessageType messageType;
     public ArrayList<Player> players;
-//
-//    public Integer id;
-//
-//    public Integer x;
-//
-//    public Integer y;
+    public Point position;
 
     public Message() {
     }

@@ -1,11 +1,11 @@
-package nl.dreamteam.server;
+package nl.dreamteam.server.logic;
 
 import nl.dreamteam.server.models.Lobby;
 import nl.dreamteam.server.models.Player;
 
 import java.util.ArrayList;
 
-public class Logic {
+public class LobbyLogic {
     private ArrayList<Lobby> lobbies = new ArrayList<>();
 
     public int createLobbyAndReturnId(String username) {
@@ -20,7 +20,7 @@ public class Logic {
         return new Player(username);
     }
 
-    private Lobby getLobby(int lobbyId) {
+    public Lobby getLobby(int lobbyId) {
         return lobbies.stream().filter(lobby -> lobby.getId() == lobbyId).findFirst().get();
     }
 
