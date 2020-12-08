@@ -22,9 +22,11 @@ public class MessageController {
     @MessageMapping("/move")
     public void movementUpdate(Message messageIn) {
         Message messageOut = new Message();
-        Player player = lobbyLogic.getLobby(messageIn.lobbyId).getPlayer(messageIn.username);
+        Lobby lobby = lobbyLogic.getLobby(messageIn.lobbyId);
+        Player player = lobby.getPlayer(messageIn.username);
         messageOut.messageType = MessageType.MOVE;
         messageOut.username = player.getUsername();
+        messageOut.players = lobby.getPlayers();
         movementLogic.move(player, messageIn.position);
         messageOut.position = player.getPosition();
         for(Player p : messageOut.players){
