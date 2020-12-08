@@ -52,6 +52,15 @@ public class MessageController {
         simpMessagingTemplate.convertAndSend(messageIn.to, messageOut);
     }
 
+    @MessageMapping("/score")
+    public void setScore(Message messageIn) {
+        Player player = logic.getPlayerWithUsername(messageIn.username, messageIn.lobbyId);
+        player.addScore(10);
+        Message messageOut = new Message();
+        messageOut.score = player.getScore();
+        simpMessagingTemplate.convertAndSend(messageIn.to, messageOut);
+    }
+
 //    @MessageMapping("/loseLife")
 //    @SendTo("/topic/game")
 //    public Message LoseLife(int gameId, Player player){

@@ -13,6 +13,7 @@ public class Message {
     public String username;
     public MessageType messageType;
     public ArrayList<Player> players;
+    public int score;
 //
 //    public Integer id;
 //

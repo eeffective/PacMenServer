@@ -9,10 +9,23 @@ public class Player {
     private int lives;
     private boolean isHost;
 
+    private int score;
+
+
+
     public Player(String username) {
         this.username = username;
         this.lives = 3;
         this.isHost = false;
+        this.score = 0;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void addScore(int score) {
+        this.score += score;
     }
 
     public String getUsername() {
