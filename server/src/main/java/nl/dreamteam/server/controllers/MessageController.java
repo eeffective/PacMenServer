@@ -58,6 +58,16 @@ public class MessageController {
         simpMessagingTemplate.convertAndSend(messageIn.to, messageOut);
     }
 
+    @MessageMapping("/start")
+    public void StartGame(Message messageIn) {
+        Message messageOut = new Message();
+        messageOut.messageType = MessageType.START;
+        for(Player p : lobbyLogic.getPlayers(messageIn.lobbyId)){
+            String to = "/topic/" + p.getUsername();
+            simpMessagingTemplate.convertAndSend(to, messageOut);
+        }
+    }
+
 //    @MessageMapping("/loseLife")
 //    @SendTo("/topic/game")
 //    public Message LoseLife(int gameId, Player player){
