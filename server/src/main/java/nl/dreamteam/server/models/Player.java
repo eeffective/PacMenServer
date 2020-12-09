@@ -8,13 +8,13 @@ public class Player {
     private PlayerType playerType;
     private int lives;
     private boolean isHost;
-    private Point position;
+    private Position position;
 
-    public void setPosition(Point position){
+    public void setPosition(Position position){
         this.position = position;
     }
 
-    public Point getPosition(){
+    public Position getPosition(){
         return this.position;
     }
 

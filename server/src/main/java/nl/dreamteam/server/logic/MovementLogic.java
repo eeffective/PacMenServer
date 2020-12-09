@@ -1,7 +1,7 @@
 package nl.dreamteam.server.logic;
 
 import nl.dreamteam.server.models.Player;
-import nl.dreamteam.server.models.Point;
+import nl.dreamteam.server.models.Position;
 
 public class MovementLogic {
 
@@ -11,7 +11,7 @@ public class MovementLogic {
         this.lobbyLogic = lobbyLogic;
     }
 
-    public void move(Player player, Point position){
+    public void move(Player player, Position position){
         player.setPosition(position);
     }
 }

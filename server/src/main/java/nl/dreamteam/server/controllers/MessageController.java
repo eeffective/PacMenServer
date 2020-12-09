@@ -62,6 +62,8 @@ public class MessageController {
     public void StartGame(Message messageIn) {
         Message messageOut = new Message();
         messageOut.messageType = MessageType.START;
+        messageOut.walls = lobbyLogic.getLobby(messageIn.lobbyId).getWalls();
+        messageOut.squareWidth = Lobby.squareWidth;
         for(Player p : lobbyLogic.getPlayers(messageIn.lobbyId)){
             String to = "/topic/" + p.getUsername();
             simpMessagingTemplate.convertAndSend(to, messageOut);
