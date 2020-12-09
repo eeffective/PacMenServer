@@ -9,6 +9,8 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
+import java.util.ArrayList;
+
 @Controller
 public class MessageController {
     private final SimpMessagingTemplate simpMessagingTemplate;
@@ -21,18 +23,8 @@ public class MessageController {
 
     @MessageMapping("/move")
     public void movementUpdate(Message messageIn) {
-        Message messageOut = new Message();
         Lobby lobby = lobbyLogic.getLobby(messageIn.lobbyId);
-        Player player = lobby.getPlayer(messageIn.username);
-        messageOut.messageType = MessageType.MOVE;
-        messageOut.username = player.getUsername();
-        messageOut.players = lobby.getPlayers();
-        movementLogic.move(player, messageIn.position);
-        messageOut.position = player.getPosition();
-        for(Player p : messageOut.players){
-            String to = "/topic/" + p.getUsername();
-            simpMessagingTemplate.convertAndSend(to, messageOut);
-        }
+        movementLogic.tryMove(messageIn.username, messageIn.direction, lobby, this);
     }
 
     @MessageMapping("/joinLobby")
@@ -42,10 +34,7 @@ public class MessageController {
         messageOut.messageType = MessageType.JOIN_LOBBY;
         messageOut.players = lobbyLogic.getPlayers(messageIn.lobbyId);
         messageOut.lobbyId = messageIn.lobbyId;
-        for(Player p : messageOut.players){
-            String to = "/topic/" + p.getUsername();
-            simpMessagingTemplate.convertAndSend(to, messageOut);
-        }
+        SendMessageToPlayers(messageOut, messageOut.players);
     }
 
     @MessageMapping("/createLobby")
@@ -60,13 +49,28 @@ public class MessageController {
 
     @MessageMapping("/start")
     public void StartGame(Message messageIn) {
+        Lobby lobby = lobbyLogic.getLobby(messageIn.lobbyId);
+        lobby.start();
         Message messageOut = new Message();
         messageOut.messageType = MessageType.START;
-        messageOut.walls = lobbyLogic.getLobby(messageIn.lobbyId).getWalls();
+        messageOut.walls = lobby.getWalls();
         messageOut.squareWidth = Lobby.squareWidth;
-        for(Player p : lobbyLogic.getPlayers(messageIn.lobbyId)){
+        messageOut.players = lobby.getPlayers();
+        SendMessageToPlayers(messageOut, lobbyLogic.getPlayers(messageIn.lobbyId));
+    }
+
+    public void UpdatePlayerMovement(ArrayList<Player> players, Player playerToMove){
+        Message message = new Message();
+        message.messageType = MessageType.MOVE;
+        message.username = playerToMove.getUsername();
+        message.position = playerToMove.getPosition();
+        SendMessageToPlayers(message, players);
+    }
+
+    private void SendMessageToPlayers(Message message, ArrayList<Player> players){
+        for(Player p : players){
             String to = "/topic/" + p.getUsername();
-            simpMessagingTemplate.convertAndSend(to, messageOut);
+            simpMessagingTemplate.convertAndSend(to, message);
         }
     }
 

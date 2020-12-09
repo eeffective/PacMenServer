@@ -24,7 +24,7 @@ public class WallGenerator {
     public static ArrayList<Wall> getMap(int wallWidth){
         ArrayList<Wall> walls = generateMap();
         for (Wall wall: walls) {
-            wall.translatePosition(wallWidth);
+            wall.getPosition().translate(wallWidth);
         }
         return walls;
     }
@@ -78,7 +78,7 @@ public class WallGenerator {
         walls.addAll(generateWall(new Position(1, 8), 3,true));
 
         walls.addAll(generateWall(new Position(15, 7), 3,true));
-        walls.addAll(generateWall(new Position(15,8), 3,true)); // <---------
+        walls.addAll(generateWall(new Position(15,8), 3,true));
 
         walls.addAll(generateWall(new Position(2, 2), 2,true));
         walls.addAll(generateWall(new Position(2,3), 2,true));

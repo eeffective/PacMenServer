@@ -34,4 +34,16 @@ public class Lobby {
     public Player getPlayer(String username){
         return players.stream().filter(p -> p.getUsername().equals(username)).findAny().get();
     }
+
+    //don't remove plz <3
+    public void start(){
+        initializePlayers();
+    }
+
+    private void initializePlayers(){
+        for (Player player: players) {
+            player.setPosition(new Position(1, 1));
+            player.getPosition().translate(squareWidth);
+        }
+    }
 }

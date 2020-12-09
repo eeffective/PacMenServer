@@ -1,6 +1,7 @@
 package nl.dreamteam.server.messages;
 
 
+import nl.dreamteam.server.Enums.Direction;
 import nl.dreamteam.server.Enums.MessageType;
 import nl.dreamteam.server.models.Player;
 import nl.dreamteam.server.models.Position;
@@ -17,6 +18,7 @@ public class Message {
     public Position position;
     public ArrayList<Wall> walls;
     public int squareWidth;
+    public Direction direction;
 
     public Message() {
     }
