@@ -3,9 +3,7 @@ package nl.dreamteam.server.messages;
 
 import nl.dreamteam.server.Enums.Direction;
 import nl.dreamteam.server.Enums.MessageType;
-import nl.dreamteam.server.models.Player;
-import nl.dreamteam.server.models.Position;
-import nl.dreamteam.server.models.Wall;
+import nl.dreamteam.server.models.*;
 
 import java.util.ArrayList;
 
@@ -16,7 +14,7 @@ public class Message {
     public MessageType messageType;
     public ArrayList<Player> players;
     public Position position;
-    public ArrayList<Wall> walls;
+    public Map map;
     public int squareWidth;
     public Direction direction;
 
