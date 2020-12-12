@@ -4,7 +4,8 @@ public enum MessageType {
     MOVE,
     CREATE_LOBBY,
     JOIN_LOBBY,
-    START
+    START,
     LOSE_LIFE,
-    DEAD
+    DEAD,
+    COLLIDE_DOT
 }

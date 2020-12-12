@@ -17,6 +17,7 @@ public class Message {
     public Map map;
     public int squareWidth;
     public Direction direction;
+    public Dot dot;
 
     public Message() {
     }

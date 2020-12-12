@@ -66,17 +66,28 @@ public class MessageController {
         SendMessageToPlayers(message, players);
     }
 
-    private void SendMessageToPlayers(Message message, ArrayList<Player> players){
-        for(Player p : players){
+    public void UpdatePacmanDots(Player player, Dot dot) {
+        Message message = new Message();
+        message.messageType = MessageType.COLLIDE_DOT;
+        message.dot = dot;
+        String to = "/topic/" + player.getUsername();
+        simpMessagingTemplate.convertAndSend(to, message);
+    }
+
+    private void SendMessageToPlayers(Message message, ArrayList<Player> players) {
+        for (Player p : players) {
             String to = "/topic/" + p.getUsername();
             simpMessagingTemplate.convertAndSend(to, message);
+        }
+    }
+
     @MessageMapping("/loseLife")
     public void loseLife(Message in){
         Message out = new Message();
-        Lobby lobby = logic.getLobby(in.lobbyId);
-        Player player = logic.getByName(in.username, lobby);
+        Lobby lobby = lobbyLogic.getLobby(in.lobbyId);
+        Player player = lobbyLogic.getByName(in.username, lobby);
 
-        logic.loseLife(player);
+        lobbyLogic.loseLife(player);
 
         if (player.getAlive()){
             out.messageType = MessageType.LOSE_LIFE;
@@ -93,20 +104,4 @@ public class MessageController {
         }
     }
 
-//    @MessageMapping("/loseLife")
-//    @SendTo("/topic/game")
-//    public Message LoseLife(int gameId, Player player){
-//        Message message = new Message();
-//        for (Game g : games){
-//            if (gameId == g.getId()){
-//                for (Player p : g.getPlayerList()){
-//                    if (player.getId() == p.getId()){
-//                        p.loseLife();
-//                        message.playerList = g.getPlayerList();
-//                    }
-//                }
-//            }
-//        }
-//        return message;
-//    }
 }

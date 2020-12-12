@@ -2,6 +2,7 @@ package nl.dreamteam.server.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 
@@ -10,6 +11,6 @@ public class Map {
     @Getter
     private ArrayList<Wall> walls;
 
-    @Getter
+    @Getter @Setter
     private ArrayList<Dot> dots;
 }
