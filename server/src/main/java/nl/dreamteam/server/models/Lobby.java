@@ -1,7 +1,7 @@
 package nl.dreamteam.server.models;
 import lombok.Getter;
 import nl.dreamteam.server.Enums.PlayerType;
-import nl.dreamteam.server.logic.WallGenerator;
+import nl.dreamteam.server.logic.MapGenerator;
 
 
 import java.util.ArrayList;
