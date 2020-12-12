@@ -1,8 +1,10 @@
 package nl.dreamteam.server.models;
 import lombok.Getter;
+import nl.dreamteam.server.Enums.PlayerType;
 import nl.dreamteam.server.logic.WallGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Lobby {
     private ArrayList<Player> players = new ArrayList<>();
@@ -41,9 +43,16 @@ public class Lobby {
     }
 
     private void initializePlayers(){
-        for (Player player: players) {
-            player.setPosition(new Position(1, 1));
-            player.getPosition().translate(squareWidth);
+        ArrayList<PlayerType> types = new ArrayList<>();
+        for (int i = 0; i < players.size(); i++) {
+            types.add(PlayerType.values()[i]);
+        }
+        Collections.shuffle(types);
+
+        for (int i = 0; i < players.size(); i++) {
+            players.get(i).setPosition(new Position(1, 1));
+            players.get(i).getPosition().translate(squareWidth);
+            players.get(i).setPlayerType(types.get(i));
         }
     }
 }
