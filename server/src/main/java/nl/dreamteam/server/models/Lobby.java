@@ -12,7 +12,6 @@ public class Lobby {
     @Getter
     private Map map;
 
-
     public static final int squareWidth = 40;
 
     private int id;

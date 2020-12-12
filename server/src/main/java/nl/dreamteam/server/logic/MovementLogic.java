@@ -6,6 +6,7 @@ import nl.dreamteam.server.models.Lobby;
 import nl.dreamteam.server.models.Player;
 import nl.dreamteam.server.models.Position;
 import nl.dreamteam.server.models.Wall;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 
@@ -18,39 +19,46 @@ public class MovementLogic {
         this.lobbyLogic = lobbyLogic;
     }
 
-    private void move(Player player, Direction direction){
-        Position position;
+    private void move(Player player, Position position){
+        player.setPosition(position);
+    }
+
+    private Position getNextPosition(Position currentPos, Direction direction){
         switch (direction){
             case Right:
-                position = new Position(player.getPosition().getX() + movementDistance, player.getPosition().getY());
-                break;
+                return new Position(currentPos.getX() + movementDistance, currentPos.getY());
             case Left:
-                position = new Position(player.getPosition().getX() - movementDistance, player.getPosition().getY());
-                break;
+                return new Position(currentPos.getX() - movementDistance, currentPos.getY());
             case Up:
-                position = new Position(player.getPosition().getX(), player.getPosition().getY() - movementDistance);
-                break;
+                return new Position(currentPos.getX(), currentPos.getY() - movementDistance);
             case Down:
-                position = new Position(player.getPosition().getX(), player.getPosition().getY() + movementDistance);
-                break;
-            default: position = player.getPosition();
+                return new Position(currentPos.getX(), currentPos.getY() + movementDistance);
+            default: return currentPos;
         }
-        player.setPosition(position);
     }
 
     public void tryMove(String username, Direction direction, Lobby lobby, MessageController messageController){
         Player player = lobby.getPlayer(username);
-        if(isPathBlocked(player.getPosition(), direction, lobby.getMap().getWalls())){
+        Position nextPos = getNextPosition(player.getPosition(), direction);
+        if(isPathBlocked(nextPos, lobby.getMap().getWalls())){
             return;
         }
         if(collidesWithOpponent(player, direction, lobby.getPlayers())){
             //do stuff @Tom @Jesse @Jasper @Efaliso @Monique @Nicole
         }
-        move(player, direction);
-        messageController.UpdatePlayerMovement(lobby.getPlayers(), player);
+        move(player, nextPos);
+        messageController.UpdatePlayerMovement(lobby.getPlayers());
     }
 
-    private boolean isPathBlocked(Position position, Direction direction, ArrayList<Wall> walls){
+    private boolean isPathBlocked(Position nextPosition, ArrayList<Wall> walls){
+        for (Wall wall: walls) {
+            if(nextPosition.getX() < wall.getPosition().getX() + Lobby.squareWidth &&
+                    nextPosition.getX() + Lobby.squareWidth > wall.getPosition().getX() &&
+                    nextPosition.getY() < wall.getPosition().getY() + Lobby.squareWidth &&
+                    nextPosition.getY() + Lobby.squareWidth > wall.getPosition().getY()){
+                return true;
+            }
+        }
         return false;
     }
 

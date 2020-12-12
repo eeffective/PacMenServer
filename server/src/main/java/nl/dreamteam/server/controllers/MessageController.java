@@ -59,11 +59,10 @@ public class MessageController {
         SendMessageToPlayers(messageOut, lobbyLogic.getPlayers(messageIn.lobbyId));
     }
 
-    public void UpdatePlayerMovement(ArrayList<Player> players, Player playerToMove){
+    public void UpdatePlayerMovement(ArrayList<Player> players){
         Message message = new Message();
         message.messageType = MessageType.MOVE;
-        message.username = playerToMove.getUsername();
-        message.position = playerToMove.getPosition();
+        message.players = players;
         SendMessageToPlayers(message, players);
     }
 
