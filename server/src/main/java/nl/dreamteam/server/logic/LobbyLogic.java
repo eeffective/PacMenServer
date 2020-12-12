@@ -31,4 +31,20 @@ public class LobbyLogic {
     public void joinLobby(int lobbyId, String username) {
         getLobby(lobbyId).addPlayer(createPlayer(username));
     }
+
+    public void loseLife(Player player){
+        if (player.getLives() <= 1){
+            player.setAlive(false);
+        } else {
+            player.loseLife();
+        }
+    }
+
+    public Player getByName(String username, Lobby lobby){
+        return lobby.getPlayers().stream().filter(p -> p.getUsername().equals(username)).findFirst().get();
+    }
+
+    public ArrayList<Player> getIrrelevantPlayers(String username, Lobby lobby){
+        return (ArrayList<Player>) lobby.getPlayers().stream().filter(p -> p.getUsername() != username);
+    }
 }

@@ -6,6 +6,7 @@ import nl.dreamteam.server.Enums.PlayerType;
 public class Player {
     private String username;
     private PlayerType playerType;
+    private Boolean alive;
     private int lives;
     private boolean isHost;
     private Position position;
@@ -22,6 +23,7 @@ public class Player {
         this.username = username;
         this.lives = 3;
         this.isHost = false;
+        this.alive = true;
     }
 
     public String getUsername() {
@@ -62,4 +64,19 @@ public class Player {
 //        }
 //        return false;
 //    }
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
+    public void loseLife (){
+        this.lives--;
+    }
+
+    public Boolean getAlive() {
+        return alive;
+    }
+
+    public void setAlive(Boolean alive) {
+        this.alive = alive;
+    }
 }

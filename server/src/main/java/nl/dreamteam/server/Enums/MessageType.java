@@ -5,4 +5,6 @@ public enum MessageType {
     CREATE_LOBBY,
     JOIN_LOBBY,
     START
+    LOSE_LIFE,
+    DEAD
 }
