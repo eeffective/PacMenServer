@@ -45,16 +45,11 @@ public class Lobby {
     }
 
     private void initializePlayers(){
-        ArrayList<PlayerType> types = new ArrayList<>();
-        for (int i = 0; i < players.size(); i++) {
-            types.add(PlayerType.values()[i]);
-        }
-        Collections.shuffle(types);
-
-        for (int i = 0; i < players.size(); i++) {
+        Collections.shuffle(players);
+        for(int i = 0; i < players.size(); i++){
             players.get(i).setPosition(new Position(1, 1));
             players.get(i).getPosition().translate(squareWidth);
-            players.get(i).setPlayerType(types.get(i));
+            players.get(i).setPlayerType(PlayerType.values()[i]);
         }
     }
 }
