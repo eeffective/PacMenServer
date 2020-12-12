@@ -40,7 +40,7 @@ public class MovementLogic {
 
     public void tryMove(String username, Direction direction, Lobby lobby, MessageController messageController){
         Player player = lobby.getPlayer(username);
-        if(isPathBlocked(player.getPosition(), direction, lobby.getWalls())){
+        if(isPathBlocked(player.getPosition(), direction, lobby.getMap().getWalls())){
             return;
         }
         if(collidesWithOpponent(player, direction, lobby.getPlayers())){

@@ -53,7 +53,7 @@ public class MessageController {
         lobby.start();
         Message messageOut = new Message();
         messageOut.messageType = MessageType.START;
-        messageOut.walls = lobby.getWalls();
+        messageOut.map = lobby.getMap();
         messageOut.squareWidth = Lobby.squareWidth;
         messageOut.players = lobby.getPlayers();
         SendMessageToPlayers(messageOut, lobbyLogic.getPlayers(messageIn.lobbyId));
