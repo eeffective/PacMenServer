@@ -32,7 +32,7 @@ public class MapGenerator {
             } else {
                 position = new Position(startingPosition.getX(), startingPosition.getY() + i);
             }
-            dots.add(new Dot(position));
+            dots.add(new Dot(position, 10));
         }
         return dots;
     }

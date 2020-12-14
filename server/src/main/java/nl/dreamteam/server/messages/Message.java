@@ -18,6 +18,7 @@ public class Message {
     public int squareWidth;
     public Direction direction;
     public Dot dot;
+    public int score;
 
     public Message() {
     }

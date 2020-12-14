@@ -1,6 +1,7 @@
 package nl.dreamteam.server.logic;
 
 import nl.dreamteam.server.Enums.Direction;
+import nl.dreamteam.server.Enums.PlayerType;
 import nl.dreamteam.server.controllers.MessageController;
 import nl.dreamteam.server.models.*;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,10 +44,12 @@ public class MovementLogic {
         if(collidesWithOpponent(player, direction, lobby.getPlayers())){
             //do stuff @Tom @Jesse @Jasper @Efaliso @Monique @Nicole
         }
-//        if(collidesWithDot(nextPos, lobby.getMap().getDots()) != null) {
-//            Dot dot = collidesWithDot(nextPos, lobby.getMap().getDots());
-//            messageController.UpdatePacmanDots(lobby.getPlayer(username), dot);
-//        }
+        if(collidesWithDot(nextPos, lobby.getMap().getDots()) != null && player.getPlayerType() == PlayerType.PACMAN) {
+            Dot dot = collidesWithDot(nextPos, lobby.getMap().getDots());
+            player.addScore(dot.getValue());
+            lobby.getMap().getDots().remove(dot);
+            messageController.UpdatePacmanDots(lobby.getPlayer(username), dot);
+        }
         move(player, nextPos);
 
         messageController.UpdatePlayerMovement(lobby.getPlayers());
@@ -67,11 +70,10 @@ public class MovementLogic {
 
     private Dot collidesWithDot(Position nextPosition, ArrayList<Dot> dots){
         for (Dot dot: dots) {
-            if(nextPosition.getX() < dot.getPosition().getX() + Lobby.squareWidth &&
-                    nextPosition.getX() + Lobby.squareWidth > dot.getPosition().getX() &&
-                    nextPosition.getY() < dot.getPosition().getY() + Lobby.squareWidth &&
-                    nextPosition.getY() + Lobby.squareWidth > dot.getPosition().getY()){
-                dots.remove(dot);
+            if(nextPosition.getX() < dot.getPosition().getX() + Lobby.squareWidth/2 &&
+                    nextPosition.getX() + Lobby.squareWidth/2 > dot.getPosition().getX() &&
+                    nextPosition.getY() < dot.getPosition().getY() + Lobby.squareWidth/2 &&
+                    nextPosition.getY() + Lobby.squareWidth/2 > dot.getPosition().getY()){
                 return dot;
             }
         }

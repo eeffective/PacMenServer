@@ -8,6 +8,7 @@ public class Player {
     private PlayerType playerType;
     private Boolean alive;
     private int lives;
+    private int score;
     private boolean isHost;
     private Position position;
 
@@ -48,6 +49,14 @@ public class Player {
 
     public void setPlayerType(PlayerType playerType) {
         this.playerType = playerType;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void addScore(int score) {
+        this.score += score;
     }
 
     //    public void loseLife() {
