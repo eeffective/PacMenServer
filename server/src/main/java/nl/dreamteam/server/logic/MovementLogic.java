@@ -48,7 +48,7 @@ public class MovementLogic {
             Dot dot = collidesWithDot(nextPos, lobby.getMap().getDots());
             player.addScore(dot.getValue());
             lobby.getMap().getDots().remove(dot);
-            messageController.UpdatePacmanDots(lobby.getPlayer(username), dot);
+            messageController.UpdatePacmanDots(lobby.getPlayers(), dot);
         }
         move(player, nextPos);
 

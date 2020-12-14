@@ -66,12 +66,12 @@ public class MessageController {
         SendMessageToPlayers(message, players);
     }
 
-    public void UpdatePacmanDots(Player player, Dot dot) {
+    public void UpdatePacmanDots(ArrayList<Player> players, Dot dot) {
         Message message = new Message();
         message.messageType = MessageType.COLLIDE_DOT;
+        message.players = players;
         message.dot = dot;
-        String to = "/topic/" + player.getUsername();
-        simpMessagingTemplate.convertAndSend(to, message);
+        SendMessageToPlayers(message, players);
     }
 
     private void SendMessageToPlayers(Message message, ArrayList<Player> players) {
