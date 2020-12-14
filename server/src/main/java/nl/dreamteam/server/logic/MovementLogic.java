@@ -10,12 +10,7 @@ import java.util.ArrayList;
 
 public class MovementLogic {
 
-    private LobbyLogic lobbyLogic;
     private final int movementDistance = 4;
-
-    public MovementLogic(LobbyLogic lobbyLogic){
-        this.lobbyLogic = lobbyLogic;
-    }
 
     private void move(Player player, Position position){
         player.setPosition(position);
@@ -36,21 +31,23 @@ public class MovementLogic {
     }
 
     public void tryMove(String username, Direction direction, Lobby lobby, MessageController messageController){
-        Player player = lobby.getPlayer(username);
-        Position nextPos = getNextPosition(player.getPosition(), direction);
+        Player lobbyPlayer = lobby.getPlayer(username);
+        Position nextPos = getNextPosition(lobbyPlayer.getPosition(), direction);
         if(isPathBlocked(nextPos, lobby.getMap().getWalls())){
             return;
         }
-        if(collidesWithOpponent(player, direction, lobby.getPlayers())){
-            //do stuff @Tom @Jesse @Jasper @Efaliso @Monique @Nicole
+        if(collidesWithOpponent(lobbyPlayer, nextPos, lobby.getPlayers())){
+            lobby.resetPlayers();
+            messageController.UpdatePlayerMovement(lobby.getPlayers());
+            return;
         }
-        if(collidesWithDot(nextPos, lobby.getMap().getDots()) != null && player.getPlayerType() == PlayerType.PACMAN) {
+        if(collidesWithDot(nextPos, lobby.getMap().getDots()) != null && lobbyPlayer.getPlayerType() == PlayerType.PACMAN) {
             Dot dot = collidesWithDot(nextPos, lobby.getMap().getDots());
-            player.addScore(dot.getValue());
+            lobbyPlayer.addScore(dot.getValue());
             lobby.getMap().getDots().remove(dot);
             messageController.UpdatePacmanDots(lobby.getPlayers(), dot);
         }
-        move(player, nextPos);
+        move(lobbyPlayer, nextPos);
 
         messageController.UpdatePlayerMovement(lobby.getPlayers());
     }
@@ -80,7 +77,33 @@ public class MovementLogic {
         return null;
     }
 
-    private boolean collidesWithOpponent(Player player, Direction direction, ArrayList<Player> players){
+    private boolean collidesWithOpponent(Player currentPlayer, Position nextPos, ArrayList<Player> players){
+        for(Player player: players) {
+            if(player.getPosition().getX() == nextPos.getX() && player.getPosition().getY() == nextPos.getY() && isOpponent(currentPlayer.getPlayerType(), player.getPlayerType())) {
+                return true;
+            }
+        }
         return false;
+    }
+
+    private boolean isOpponent(PlayerType playerType, PlayerType opponentType) {
+        int ghostCounter = 0;
+        String player = playerType.toString();
+        if(isGhost(player)) {
+            ghostCounter++;
+        }
+        String opponent = opponentType.toString();
+        if(isGhost(opponent)) {
+            ghostCounter++;
+        }
+
+        if(ghostCounter == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isGhost(String input) {
+        return input.indexOf("GHOST") !=-1? true: false;
     }
 }

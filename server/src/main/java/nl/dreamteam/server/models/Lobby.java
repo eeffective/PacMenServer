@@ -46,9 +46,33 @@ public class Lobby {
     private void initializePlayers(){
         Collections.shuffle(players);
         for(int i = 0; i < players.size(); i++){
-            players.get(i).setPosition(new Position(1, 1));
-            players.get(i).getPosition().translate(squareWidth);
             players.get(i).setPlayerType(PlayerType.values()[i]);
+            setRandomPositionsPlayer(players.get(i));
+            players.get(i).getPosition().translate(squareWidth);
+        }
+    }
+
+    private void setRandomPositionsPlayer(Player player) {
+        if(player.getPlayerType() == PlayerType.PACMAN) {
+            player.setPosition(getRandomPositionBottomLayer());
+        } else {
+            player.setPosition(getRandomPositionTopLayer());
+        }
+    }
+    private Position getRandomPositionTopLayer() {
+        int range = 8;
+        return new Position((int)Math.random() * 8 + 1, 1);
+    }
+
+    private Position getRandomPositionBottomLayer() {
+        int range = 8;
+        return new Position((int)Math.random() * 10 + 1, 18);
+    }
+
+    public void resetPlayers() {
+        for(Player player: players) {
+            setRandomPositionsPlayer(player);
+            player.getPosition().translate(squareWidth);
         }
     }
 }

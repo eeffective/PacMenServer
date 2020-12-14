@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class MessageController {
     private final SimpMessagingTemplate simpMessagingTemplate;
     private final LobbyLogic lobbyLogic = new LobbyLogic();
-    private final MovementLogic movementLogic = new MovementLogic(lobbyLogic);
+    private final MovementLogic movementLogic = new MovementLogic();
 
     public MessageController(SimpMessagingTemplate simpMessagingTemplate) {
         this.simpMessagingTemplate = simpMessagingTemplate;
