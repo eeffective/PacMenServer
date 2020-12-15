@@ -1,12 +1,16 @@
 package nl.dreamteam.server.models;
 
 import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import nl.dreamteam.server.Enums.ObjectType;
+import nl.dreamteam.server.abstracts.GameObject;
 
-public class Wall {
-    @Getter
+@RequiredArgsConstructor
+public class Wall extends GameObject {
+    @Getter @NonNull
     private Position position;
 
-    public Wall(Position position){
-        this.position = position;
-    }
+    @Getter
+    private ObjectType objectType = ObjectType.Wall;
 }

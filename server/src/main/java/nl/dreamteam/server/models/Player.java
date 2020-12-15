@@ -1,6 +1,9 @@
 package nl.dreamteam.server.models;
 
 
+import lombok.Getter;
+import lombok.Setter;
+import nl.dreamteam.server.Enums.Direction;
 import nl.dreamteam.server.Enums.PlayerType;
 
 public class Player {
@@ -11,6 +14,10 @@ public class Player {
     private int score;
     private boolean isHost;
     private Position position;
+    @Getter @Setter
+    private Direction currentDirection;
+    @Getter @Setter
+    private Direction futureDirection;
 
     public void setPosition(Position position){
         this.position = position;

@@ -2,6 +2,7 @@ package nl.dreamteam.server.logic;
 
 import nl.dreamteam.server.Enums.Direction;
 import nl.dreamteam.server.Enums.PlayerType;
+import nl.dreamteam.server.abstracts.GameObject;
 import nl.dreamteam.server.controllers.MessageController;
 import nl.dreamteam.server.models.*;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,19 +33,24 @@ public class MovementLogic {
 
     public void tryMove(String username, Direction direction, Lobby lobby, MessageController messageController){
         Player lobbyPlayer = lobby.getPlayer(username);
+        lobbyPlayer.setCurrentDirection(direction);
+
         Position nextPos = getNextPosition(lobbyPlayer.getPosition(), direction);
-        if(isPathBlocked(nextPos, lobby.getMap().getWalls())){
+        Position convertedPos = convertPositionToMapPosition(nextPos, direction);
+        if(isPathBlocked(convertedPos, lobby.getMap().getGameObjects())){
             return;
         }
-        if(collidesWithOpponent(lobbyPlayer, nextPos, lobby.getPlayers())){
+        if(collidesWithOpponent(lobbyPlayer, convertedPos, lobby.getPlayers())){
             lobby.resetPlayers();
             messageController.UpdatePlayerMovement(lobby.getPlayers());
             return;
         }
-        if(collidesWithDot(nextPos, lobby.getMap().getDots()) != null && lobbyPlayer.getPlayerType() == PlayerType.PACMAN) {
-            Dot dot = collidesWithDot(nextPos, lobby.getMap().getDots());
+        Dot dot = collidesWithDot(convertedPos, lobby.getMap().getGameObjects());
+        if(dot != null && lobbyPlayer.getPlayerType() == PlayerType.PACMAN) {
             lobbyPlayer.addScore(dot.getValue());
-            lobby.getMap().getDots().remove(dot);
+            GameObject[][] objects = lobby.getMap().getGameObjects();
+            objects[dot.getPosition().getX()][dot.getPosition().getY()] = null;
+            lobby.getMap().setGameObjects(objects);
             messageController.UpdatePacmanDots(lobby.getPlayers(), dot);
         }
         move(lobbyPlayer, nextPos);
@@ -52,27 +58,33 @@ public class MovementLogic {
         messageController.UpdatePlayerMovement(lobby.getPlayers());
     }
 
+    private Position convertPositionToMapPosition(Position oldPosition, Direction direction){
+        int newX;
+        int newY;
+        if(isHorizontalMovement(direction)){
+            newX = (int)Math.ceil(oldPosition.getX() / (double)Lobby.squareWidth);
+            newY = oldPosition.getY() / Lobby.squareWidth;
+        } else {
+            newX = oldPosition.getX() / Lobby.squareWidth;
+            newY = (int)Math.ceil(oldPosition.getY() / (double)Lobby.squareWidth);
+        }
+        return new Position(newX, newY);
+    }
 
-    private boolean isPathBlocked(Position nextPosition, ArrayList<Wall> walls){
-        for (Wall wall: walls) {
-            if(nextPosition.getX() < wall.getPosition().getX() + Lobby.squareWidth &&
-                    nextPosition.getX() + Lobby.squareWidth > wall.getPosition().getX() &&
-                    nextPosition.getY() < wall.getPosition().getY() + Lobby.squareWidth &&
-                    nextPosition.getY() + Lobby.squareWidth > wall.getPosition().getY()){
-                return true;
-            }
+    private boolean isHorizontalMovement(Direction direction){
+        return direction == Direction.Left || direction == Direction.Right;
+    }
+
+    private boolean isPathBlocked(Position nextPosition, GameObject[][] objects){
+        if(objects[nextPosition.getY()][nextPosition.getX()] instanceof Wall){
+            return true;
         }
         return false;
     }
 
-    private Dot collidesWithDot(Position nextPosition, ArrayList<Dot> dots){
-        for (Dot dot: dots) {
-            if(nextPosition.getX() < dot.getPosition().getX() + Lobby.squareWidth/2 &&
-                    nextPosition.getX() + Lobby.squareWidth/2 > dot.getPosition().getX() &&
-                    nextPosition.getY() < dot.getPosition().getY() + Lobby.squareWidth/2 &&
-                    nextPosition.getY() + Lobby.squareWidth/2 > dot.getPosition().getY()){
-                return dot;
-            }
+    private Dot collidesWithDot(Position nextPosition, GameObject[][] objects){
+        if(objects[nextPosition.getX()][nextPosition.getY()] instanceof Dot){
+            return (Dot) objects[nextPosition.getX()][nextPosition.getY()];
         }
         return null;
     }
