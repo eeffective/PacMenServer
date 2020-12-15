@@ -36,20 +36,26 @@ public class MovementLogic {
         lobbyPlayer.setCurrentDirection(direction);
 
         Position nextPos = getNextPosition(lobbyPlayer.getPosition(), direction);
-        Position convertedPos = convertPositionToMapPosition(nextPos, direction);
-        if(isPathBlocked(convertedPos, lobby.getMap().getGameObjects())){
+        ArrayList<Position> convertedPositions = new ArrayList<>();
+        if(isPerfectlyAligned(nextPos, direction)){
+            convertedPositions.add(nextPositionPerfectAlignment(nextPos, direction));
+        } else {
+            convertedPositions = nextPositionImperfectAlignment(nextPos, direction);
+        }
+
+        if(isPathBlocked(convertedPositions, lobby.getMap().getGameObjects())){
             return;
         }
-        if(collidesWithOpponent(lobbyPlayer, convertedPos, lobby.getPlayers())){
+        if(collidesWithOpponent(lobbyPlayer, nextPos, lobby.getPlayers())){
             lobby.resetPlayers();
             messageController.UpdatePlayerMovement(lobby.getPlayers());
             return;
         }
-        Dot dot = collidesWithDot(convertedPos, lobby.getMap().getGameObjects());
+        Dot dot = collidesWithDot(convertedPositions, lobby.getMap().getGameObjects());
         if(dot != null && lobbyPlayer.getPlayerType() == PlayerType.PACMAN) {
             lobbyPlayer.addScore(dot.getValue());
             GameObject[][] objects = lobby.getMap().getGameObjects();
-            objects[dot.getPosition().getX()][dot.getPosition().getY()] = null;
+            objects[dot.getPosition().getX()/Lobby.squareWidth][dot.getPosition().getY()/Lobby.squareWidth] = null;
             lobby.getMap().setGameObjects(objects);
             messageController.UpdatePacmanDots(lobby.getPlayers(), dot);
         }
@@ -58,33 +64,83 @@ public class MovementLogic {
         messageController.UpdatePlayerMovement(lobby.getPlayers());
     }
 
-    private Position convertPositionToMapPosition(Position oldPosition, Direction direction){
+    private boolean isPerfectlyAligned(Position oldPosition, Direction direction){
+        if(isHorizontalMovement(direction)){
+            return oldPosition.getY() % Lobby.squareWidth == 0;
+        } else {
+            return oldPosition.getX() % Lobby.squareWidth == 0;
+        }
+    }
+
+    private Position nextPositionPerfectAlignment(Position oldPosition, Direction direction){
         int newX;
         int newY;
-        if(isHorizontalMovement(direction)){
-            newX = (int)Math.ceil(oldPosition.getX() / (double)Lobby.squareWidth);
-            newY = oldPosition.getY() / Lobby.squareWidth;
-        } else {
-            newX = oldPosition.getX() / Lobby.squareWidth;
-            newY = (int)Math.ceil(oldPosition.getY() / (double)Lobby.squareWidth);
+        switch(direction){
+            case Up:
+            case Left:
+                newX = oldPosition.getX() / Lobby.squareWidth;
+                newY = oldPosition.getY() / Lobby.squareWidth;
+                break;
+            case Down:
+                newX = oldPosition.getX() / Lobby.squareWidth;
+                newY = (int)Math.ceil(oldPosition.getY() / (double)Lobby.squareWidth);
+                break;
+            case Right:
+                newX = (int)Math.ceil(oldPosition.getX() / (double)Lobby.squareWidth);
+                newY = oldPosition.getY() / Lobby.squareWidth;
+                break;
+            default:
+                return oldPosition;
         }
         return new Position(newX, newY);
+    }
+
+    private ArrayList<Position> nextPositionImperfectAlignment(Position oldPosition, Direction direction){
+        ArrayList<Position> positions = new ArrayList<>();
+        positions.add(nextPositionPerfectAlignment(oldPosition, direction));
+        int newX;
+        int newY;
+        switch(direction){
+            case Up:
+                newX = (int)Math.ceil(oldPosition.getX() / (double)Lobby.squareWidth);
+                newY = (int)Math.ceil(oldPosition.getY() / Lobby.squareWidth);
+                break;
+            case Left:
+                newX = (int)Math.ceil(oldPosition.getX() / Lobby.squareWidth);
+                newY = (int)Math.ceil(oldPosition.getY() / (double)Lobby.squareWidth);
+                break;
+            case Down:
+            case Right:
+                newX = (int)Math.ceil(oldPosition.getX() / (double)Lobby.squareWidth);
+                newY = (int)Math.ceil(oldPosition.getY() / (double)Lobby.squareWidth);
+                break;
+            default:
+                newX = 0;
+                newY = 0;
+                break;
+        }
+        positions.add(new Position(newX, newY));
+        return positions;
     }
 
     private boolean isHorizontalMovement(Direction direction){
         return direction == Direction.Left || direction == Direction.Right;
     }
 
-    private boolean isPathBlocked(Position nextPosition, GameObject[][] objects){
-        if(objects[nextPosition.getY()][nextPosition.getX()] instanceof Wall){
-            return true;
+    private boolean isPathBlocked(ArrayList<Position> positions, GameObject[][] objects){
+        for (Position nextPosition:positions) {
+            if(objects[nextPosition.getY()][nextPosition.getX()] instanceof Wall){
+                return true;
+            }
         }
         return false;
     }
 
-    private Dot collidesWithDot(Position nextPosition, GameObject[][] objects){
-        if(objects[nextPosition.getX()][nextPosition.getY()] instanceof Dot){
-            return (Dot) objects[nextPosition.getX()][nextPosition.getY()];
+    private Dot collidesWithDot(ArrayList<Position> positions, GameObject[][] objects){
+        for (Position nextPosition:positions) {
+            if(objects[nextPosition.getY()][nextPosition.getX()] instanceof Dot){
+                return (Dot) objects[nextPosition.getY()][nextPosition.getX()];
+            }
         }
         return null;
     }
