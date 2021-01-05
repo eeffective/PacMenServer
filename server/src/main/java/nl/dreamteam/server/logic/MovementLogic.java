@@ -7,6 +7,8 @@ import nl.dreamteam.server.models.*;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MovementLogic {
 
@@ -36,9 +38,11 @@ public class MovementLogic {
         if(isPathBlocked(nextPos, lobby.getMap().getWalls())){
             return;
         }
-        if(collidesWithOpponent(lobbyPlayer, nextPos, lobby.getPlayers())){
+        if(pacmanCollidesWithGhost(lobbyPlayer, nextPos, lobby.getPlayers())){
             lobby.resetPlayers();
-            messageController.UpdatePlayerMovement(lobby.getPlayers());
+            if(!lobbyPlayer.getAlive()){
+                messageController.SendDeadMessage(lobby.getPlayers());
+            }
             return;
         }
         if(collidesWithDot(nextPos, lobby.getMap().getDots()) != null && lobbyPlayer.getPlayerType() == PlayerType.PACMAN) {
@@ -77,33 +81,18 @@ public class MovementLogic {
         return null;
     }
 
-    private boolean collidesWithOpponent(Player currentPlayer, Position nextPos, ArrayList<Player> players){
-        for(Player player: players) {
-            if(player.getPosition().getX() == nextPos.getX() && player.getPosition().getY() == nextPos.getY() && isOpponent(currentPlayer.getPlayerType(), player.getPlayerType())) {
+
+    private boolean pacmanCollidesWithGhost(Player pacman, Position nextPos, ArrayList<Player> players){
+        if (pacman.getPlayerType() != PlayerType.PACMAN) return false;
+        List<Player> ghosts = players.stream().filter(p -> !p.getPlayerType().equals(PlayerType.PACMAN)).collect(Collectors.toList());
+
+        for(var g : ghosts){
+            if(g.getPosition().getX() == nextPos.getX() && g.getPosition().getY() == nextPos.getY()) {
+                pacman.loseLife();
                 return true;
             }
-        }
-        return false;
+        } return false;
+
     }
 
-    private boolean isOpponent(PlayerType playerType, PlayerType opponentType) {
-        int ghostCounter = 0;
-        String player = playerType.toString();
-        if(isGhost(player)) {
-            ghostCounter++;
-        }
-        String opponent = opponentType.toString();
-        if(isGhost(opponent)) {
-            ghostCounter++;
-        }
-
-        if(ghostCounter == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isGhost(String input) {
-        return input.indexOf("GHOST") !=-1? true: false;
-    }
 }

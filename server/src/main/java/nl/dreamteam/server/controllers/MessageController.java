@@ -10,6 +10,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class MessageController {
@@ -81,27 +82,11 @@ public class MessageController {
         }
     }
 
-    @MessageMapping("/loseLife")
-    public void loseLife(Message in){
+    public void SendDeadMessage(ArrayList<Player> players){
         Message out = new Message();
-        Lobby lobby = lobbyLogic.getLobby(in.lobbyId);
-        Player player = lobbyLogic.getByName(in.username, lobby);
-
-        lobbyLogic.loseLife(player);
-
-        if (player.getAlive()){
-            out.messageType = MessageType.LOSE_LIFE;
-        } else {
-            out.messageType = MessageType.DEAD;
-        }
-
-        out.players = lobby.getPlayers();
-
-        for (Player p : lobby.getPlayers()){
-            String to = "/topic/" + p.getUsername();
-            System.out.println("to = " + to);
-            simpMessagingTemplate.convertAndSend(to, out);
-        }
+        out.messageType = MessageType.DEAD;
+        out.players = players;
+        SendMessageToPlayers(out, players);
     }
 
 }
