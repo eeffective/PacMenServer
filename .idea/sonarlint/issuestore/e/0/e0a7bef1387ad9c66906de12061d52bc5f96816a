@@ -1,0 +1,18 @@
+
+†
+java:S1319!"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ğÂ›
+M
+java:S3655&"7Call "Optional#isPresent()" before accessing the value.(˜Úîç
+o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ò‡“£
+O
+java:S1854?"9Remove this useless assignment to local variable "range".(ÍÒ‡Ò
+D
+java:S2140@")Use "java.util.Random.nextInt()" instead.(·¥öùÿÿÿÿ
+O
+java:S1854D"9Remove this useless assignment to local variable "range".(ÍÒ‡Ò
+D
+java:S2140E")Use "java.util.Random.nextInt()" instead.(¨ÊÄ–ùÿÿÿÿ
+@
+java:S1481?"*Remove this unused "range" local variable.(ÍÒ‡Ò
+@
+java:S1481D"*Remove this unused "range" local variable.(ÍÒ‡Ò

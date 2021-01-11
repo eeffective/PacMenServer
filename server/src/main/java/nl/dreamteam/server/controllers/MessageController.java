@@ -1,6 +1,7 @@
 package nl.dreamteam.server.controllers;
 
 import nl.dreamteam.server.Enums.MessageType;
+import nl.dreamteam.server.Enums.PlayerType;
 import nl.dreamteam.server.logic.LobbyLogic;
 import nl.dreamteam.server.logic.MovementLogic;
 import nl.dreamteam.server.messages.Message;
@@ -74,6 +75,14 @@ public class MessageController {
         SendMessageToPlayers(message, players);
     }
 
+    public void UpdatePowerUps(ArrayList<Player> players, PowerUp pup) {
+        Message message = new Message();
+        message.messageType = MessageType.COLLIDE_POWERUP;
+        message.players = players;
+        message.powerUp = pup;
+        SendMessageToPlayers(message, players);
+    }
+
     private void SendMessageToPlayers(Message message, ArrayList<Player> players) {
         for (Player p : players) {
             String to = "/topic/" + p.getUsername();
@@ -102,6 +111,18 @@ public class MessageController {
             System.out.println("to = " + to);
             simpMessagingTemplate.convertAndSend(to, out);
         }
+    }
+
+    @MessageMapping("/powerupdone")
+    public void removePower(Message messageIn) {
+        Message out = new Message();
+        Lobby lobby = lobbyLogic.getLobby(messageIn.lobbyId);
+        for (Player player:lobby.getPlayers()) {
+            player.setPowerUp(false);
+        }
+        out.messageType = MessageType.POWERUP_DONE;
+        out.players = lobby.getPlayers();
+        SendMessageToPlayers(out, out.players);
     }
 
 }

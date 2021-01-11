@@ -18,6 +18,8 @@ public class Player {
     private Direction currentDirection;
     @Getter @Setter
     private Direction futureDirection;
+    @Getter @Setter
+    private boolean powerUp;
 
     public void setPosition(Position position){
         this.position = position;
@@ -32,6 +34,7 @@ public class Player {
         this.lives = 3;
         this.isHost = false;
         this.alive = true;
+        this.powerUp = false;
     }
 
     public String getUsername() {

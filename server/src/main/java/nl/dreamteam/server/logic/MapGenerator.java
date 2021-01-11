@@ -1,10 +1,7 @@
 package nl.dreamteam.server.logic;
 
 import nl.dreamteam.server.abstracts.GameObject;
-import nl.dreamteam.server.models.Dot;
-import nl.dreamteam.server.models.Map;
-import nl.dreamteam.server.models.Position;
-import nl.dreamteam.server.models.Wall;
+import nl.dreamteam.server.models.*;
 
 import java.util.ArrayList;
 
@@ -36,6 +33,20 @@ public class MapGenerator {
             dots.add(new Dot(position));
         }
         return dots;
+    }
+
+    private static ArrayList<PowerUp> generatePowerUp(Position startingPosition, int length, boolean isHorizontal) {
+        ArrayList<PowerUp> powerUps = new ArrayList<>();
+        for (int i = 0; i < length; i++) {
+            Position position;
+            if (isHorizontal) {
+                position = new Position(startingPosition.getX() + i, startingPosition.getY());
+            } else {
+                position = new Position(startingPosition.getX(), startingPosition.getY() + i);
+            }
+            powerUps.add(new PowerUp(position));
+        }
+        return powerUps;
     }
 
     public static Map getMap(int wallWidth) {
@@ -160,7 +171,7 @@ public class MapGenerator {
         gameObjects.addAll(generateDot(new Position(10, 6), 2, true));
         gameObjects.addAll(generateDot(new Position(15, 6), 2, true));
 
-        gameObjects.addAll(generateDot(new Position(8, 7), 1, false));
+        gameObjects.addAll(generatePowerUp(new Position(8, 7), 1, false));
         gameObjects.addAll(generateDot(new Position(10, 7), 1, false));
 
         gameObjects.addAll(generateDot(new Position(6, 8), 7, true));

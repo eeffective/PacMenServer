@@ -1,0 +1,20 @@
+
+E
+java:S5411e"*Use the primitive boolean expression here.(œâ¼Èûÿÿÿÿ
+S	java:S106o"9Replace this use of System.out or System.err by a logger.(±Ÿëáÿÿÿÿÿ
+c	java:S100F"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦€ð¼
+c	java:S100*"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ø²ùï
+ˆ
+java:S1319N"rThe type of the "players" object should be an interface such as "List" rather than the implementation "ArrayList".(ÐãÊ™
+\
+java:S1128"ARemove this unused import 'nl.dreamteam.server.Enums.PlayerType'.(ÎÂ›Âþÿÿÿÿ
+N	java:S106/"9Replace this use of System.out or System.err by a logger.(ªÞ¼Ö
+c	java:S100N"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÐãÊ™
+h	java:S100V"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ãµ²úûÿÿÿÿ
+ˆ
+java:S1319?"rThe type of the "players" object should be an interface such as "List" rather than the implementation "ArrayList".(å©ÜÒ
+c	java:S100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À¬Ã¿
+c	java:S100?"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(å©ÜÒ
+h	java:S1004"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±¼£˜ÿÿÿÿÿ
+ˆ
+java:S1319F"rThe type of the "players" object should be an interface such as "List" rather than the implementation "ArrayList".(¦€ð¼

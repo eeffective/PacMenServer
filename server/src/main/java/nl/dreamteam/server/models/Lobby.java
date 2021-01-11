@@ -75,4 +75,9 @@ public class Lobby {
             player.getPosition().translate(squareWidth);
         }
     }
+
+    public void resetSinglePlayer(Player player) {
+        setRandomPositionsPlayer(player);
+        player.getPosition().translate(squareWidth);
+    }
 }

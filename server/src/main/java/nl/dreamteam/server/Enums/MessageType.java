@@ -7,5 +7,7 @@ public enum MessageType {
     START,
     LOSE_LIFE,
     DEAD,
-    COLLIDE_DOT
+    COLLIDE_DOT,
+    COLLIDE_POWERUP,
+    POWERUP_DONE
 }

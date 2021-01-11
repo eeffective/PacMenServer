@@ -5,7 +5,6 @@ import nl.dreamteam.server.Enums.PlayerType;
 import nl.dreamteam.server.abstracts.GameObject;
 import nl.dreamteam.server.controllers.MessageController;
 import nl.dreamteam.server.models.*;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 
@@ -45,8 +44,17 @@ public class MovementLogic {
             return;
         }
 
-        if(collidesWithOpponent(lobbyPlayer, nextPos, lobby.getPlayers())){
-            lobby.resetPlayers();
+        Player opponent = collidesWithOpponent(lobbyPlayer, nextPos, lobby.getPlayers());
+        if(opponent != null){
+            if(lobbyPlayer.isPowerUp()) {
+                lobbyPlayer.addScore(250);
+                lobby.resetSinglePlayer(opponent);
+            } else if(opponent.isPowerUp()) {
+                opponent.addScore(250);
+                lobby.resetSinglePlayer(lobbyPlayer);
+            } else {
+                lobby.resetPlayers();
+            }
             messageController.UpdatePlayerMovement(lobby.getPlayers());
             return;
         }
@@ -57,6 +65,11 @@ public class MovementLogic {
             objects[dot.getPosition().getY()/Lobby.squareWidth][dot.getPosition().getX()/Lobby.squareWidth] = null;
             lobby.getMap().setGameObjects(objects);
             messageController.UpdatePacmanDots(lobby.getPlayers(), dot);
+        }
+        PowerUp pup = collidesWithPowerup(convertedPos, lobby.getMap().getGameObjects());
+        if(pup != null && lobbyPlayer.getPlayerType() == PlayerType.PACMAN) {
+            lobbyPlayer.setPowerUp(true);
+            messageController.UpdatePowerUps(lobby.getPlayers(), pup);
         }
         move(lobbyPlayer, nextPos);
 
@@ -112,13 +125,20 @@ public class MovementLogic {
         return null;
     }
 
-    private boolean collidesWithOpponent(Player currentPlayer, Position nextPos, ArrayList<Player> players){
+    private Player collidesWithOpponent(Player currentPlayer, Position nextPos, ArrayList<Player> players){
         for(Player player: players) {
             if(player.getPosition().getX() == nextPos.getX() && player.getPosition().getY() == nextPos.getY() && isOpponent(currentPlayer.getPlayerType(), player.getPlayerType())) {
-                return true;
+                return player;
             }
         }
-        return false;
+        return null;
+    }
+
+    private PowerUp collidesWithPowerup(Position nextPosition, GameObject[][] objects){
+        if(objects[nextPosition.getY()][nextPosition.getX()] instanceof PowerUp){
+            return (PowerUp) objects[nextPosition.getY()][nextPosition.getX()];
+        }
+        return null;
     }
 
     private boolean isOpponent(PlayerType playerType, PlayerType opponentType) {
@@ -139,6 +159,10 @@ public class MovementLogic {
     }
 
     private boolean isGhost(String input) {
-        return input.indexOf("GHOST") !=-1? true: false;
+        return input.contains("GHOST");
+    }
+
+    private boolean isPoweredUp(Player player) {
+        return player.getPlayerType() == PlayerType.PACMAN && player.isPowerUp();
     }
 }
