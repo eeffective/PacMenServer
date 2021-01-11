@@ -19,6 +19,7 @@ public class Message {
     public Direction direction;
     public Dot dot;
     public int score;
+    public ChatMessage chatMessage;
 
     public Message() {
     }

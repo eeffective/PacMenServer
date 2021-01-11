@@ -104,4 +104,12 @@ public class MessageController {
         }
     }
 
+    @MessageMapping("/chat")
+    public void sendChatMessage(Message in){
+        var players = lobbyLogic.getPlayers(in.lobbyId);
+        Message out = new Message();
+        out.messageType = MessageType.CHAT;
+        out.chatMessage = in.chatMessage;
+        SendMessageToPlayers(out, players);
+    }
 }
