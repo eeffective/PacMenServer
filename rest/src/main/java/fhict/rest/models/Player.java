@@ -1,13 +1,12 @@
 package fhict.rest.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "Users")
-public class User {
+@Table(name = "Players")
+public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
@@ -15,8 +14,8 @@ public class User {
 
     @NotEmpty(message="Name cannot be null")
     @Size(min=2, message="Name must be atleast 2 characters")
-    @Column(name = "Name")
-    private String name;
+    @Column(name = "Username")
+    private String username;
 
     @NotEmpty
     @Size(min=2, message="Password must be atleast 2 characters")
@@ -31,12 +30,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
