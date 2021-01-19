@@ -20,7 +20,6 @@ public class Message {
     public Dot dot;
     public int score;
     public PowerUp powerUp;
-    public int score;
 //
 //    public Integer id;
 //

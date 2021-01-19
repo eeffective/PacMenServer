@@ -29,10 +29,6 @@ public class Player {
         return this.position;
     }
 
-    private int score;
-
-
-
     public Player(String username) {
         this.username = username;
         this.lives = 3;
@@ -74,15 +70,6 @@ public class Player {
         this.playerType = playerType;
     }
 
-    public int getScore() {
-        return score;
-    }
-
-    public void addScore(int score) {
-        this.score += score;
-    }
-
-
     public void setLives(int lives) {
         this.lives = lives;
     }
@@ -91,7 +78,7 @@ public class Player {
         if (this.getLives() <= 1){
             this.setAlive(false);
         } else {
-            this.setLives(this.lives--);
+            this.lives--;
         }
     }
 

@@ -112,7 +112,7 @@ public class MessageController {
 
     @MessageMapping("/score")
     public void setScore(Message messageIn) {
-        Player player = logic.getPlayerWithUsername(messageIn.username, messageIn.lobbyId);
+        Player player = lobbyLogic.getPlayerWithUsername(messageIn.username, messageIn.lobbyId);
         player.addScore(10);
         Message messageOut = new Message();
         messageOut.score = player.getScore();

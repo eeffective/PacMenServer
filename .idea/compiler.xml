@@ -12,7 +12,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
-      <module name="PacmenShared" target="11" />
       <module name="rest" target="11" />
       <module name="server" target="11" />
     </bytecodeTargetLevel>
