@@ -24,6 +24,10 @@ public class LobbyLogic {
         return lobbies.stream().filter(lobby -> lobby.getId() == lobbyId).findFirst().get();
     }
 
+    public  Player getPlayerWithUsername(String name, int lobbyId){
+        return getLobby(lobbyId).getPlayers().stream().filter(player -> player.getUsername() == name).findFirst().get();
+    }
+
     public ArrayList<Player> getPlayers(int lobbyId) {
         return getLobby(lobbyId).getPlayers();
     }
