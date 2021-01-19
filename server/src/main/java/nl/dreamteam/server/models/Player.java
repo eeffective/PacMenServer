@@ -82,26 +82,17 @@ public class Player {
         this.score += score;
     }
 
-    //    public void loseLife() {
-//        this.lives -= 1;
-//    }
-//
-//    public int getLife() {
-//        return this.lives;
-//    }
-//
-//    public boolean isDead() {
-//        if (this.lives == 0){
-//            return true;
-//        }
-//        return false;
-//    }
+
     public void setLives(int lives) {
         this.lives = lives;
     }
 
     public void loseLife (){
-        this.lives--;
+        if (this.getLives() <= 1){
+            this.setAlive(false);
+        } else {
+            this.setLives(this.lives--);
+        }
     }
 
     public Boolean getAlive() {

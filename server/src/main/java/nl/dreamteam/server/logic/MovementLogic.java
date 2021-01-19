@@ -7,6 +7,8 @@ import nl.dreamteam.server.controllers.MessageController;
 import nl.dreamteam.server.models.*;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MovementLogic {
 
@@ -56,6 +58,11 @@ public class MovementLogic {
                 lobby.resetPlayers();
             }
             messageController.UpdatePlayerMovement(lobby.getPlayers());
+        if(pacmanCollidesWithGhost(lobbyPlayer, nextPos, lobby.getPlayers())){
+            lobby.resetPlayers();
+            if(!lobbyPlayer.getAlive()){
+                messageController.SendDeadMessage(lobby.getPlayers());
+            }
             return;
         }
         Dot dot = collidesWithDot(convertedPos, lobby.getMap().getGameObjects());
@@ -141,21 +148,17 @@ public class MovementLogic {
         return null;
     }
 
-    private boolean isOpponent(PlayerType playerType, PlayerType opponentType) {
-        int ghostCounter = 0;
-        String player = playerType.toString();
-        if(isGhost(player)) {
-            ghostCounter++;
-        }
-        String opponent = opponentType.toString();
-        if(isGhost(opponent)) {
-            ghostCounter++;
-        }
+    private boolean pacmanCollidesWithGhost(Player pacman, Position nextPos, ArrayList<Player> players){
+        if (pacman.getPlayerType() != PlayerType.PACMAN) return false;
+        List<Player> ghosts = players.stream().filter(p -> !p.getPlayerType().equals(PlayerType.PACMAN)).collect(Collectors.toList());
 
-        if(ghostCounter == 1) {
-            return true;
-        }
-        return false;
+        for(var g : ghosts){
+            if(g.getPosition().getX() == nextPos.getX() && g.getPosition().getY() == nextPos.getY()) {
+                pacman.loseLife();
+                return true;
+            }
+        } return false;
+
     }
 
     private boolean isGhost(String input) {
