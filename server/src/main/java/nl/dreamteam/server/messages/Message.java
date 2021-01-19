@@ -27,6 +27,7 @@ public class Message {
 //    public Integer x;
 //
 //    public Integer y;
+    public ChatMessage chatMessage;
 
     public Message() {
     }

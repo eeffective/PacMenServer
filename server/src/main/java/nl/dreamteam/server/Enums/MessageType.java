@@ -9,5 +9,6 @@ public enum MessageType {
     DEAD,
     COLLIDE_DOT,
     COLLIDE_POWERUP,
-    POWERUP_DONE
+    POWERUP_DONE,
+    CHAT,
 }
