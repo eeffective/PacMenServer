@@ -50,7 +50,7 @@
     </schema>
     <schema id="15" parent="2" name="dbo">
       <ObjectId>1</ObjectId>
-      <IntrospectionTimestamp>2020-10-26.16:34:55.183</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2021-01-16.19:11:12.623</IntrospectionTimestamp>
       <Current>1</Current>
     </schema>
     <schema id="16" parent="2" name="guest">
@@ -59,28 +59,52 @@
     <schema id="17" parent="2" name="sys">
       <ObjectId>4</ObjectId>
     </schema>
-    <table id="18" parent="15" name="Score">
+    <table id="18" parent="15" name="Players">
+      <ObjectId>261575970</ObjectId>
+      <CreatedTimestamp>2021-01-16.18:37:16.530</CreatedTimestamp>
+      <ModifiedTimestamp>2021-01-16.19:11:12.047</ModifiedTimestamp>
+    </table>
+    <table id="19" parent="15" name="Score">
       <ObjectId>245575913</ObjectId>
       <CreatedTimestamp>2020-10-26.16:17:13.837</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-26.16:34:54.780</ModifiedTimestamp>
     </table>
-    <column id="19" parent="18" name="id">
+    <column id="20" parent="18" name="Id">
       <Position>1</Position>
       <SequenceIdentity>1</SequenceIdentity>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="20" parent="18" name="name">
+    <column id="21" parent="18" name="Username">
+      <Position>2</Position>
+      <DataType>nvarchar(100 char)|0s</DataType>
+    </column>
+    <column id="22" parent="18" name="Password">
+      <Position>3</Position>
+      <DataType>nvarchar(100 char)|0s</DataType>
+    </column>
+    <index id="23" parent="18" name="Users_Id_uindex">
+      <Position>2</Position>
+      <ColNames>Id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <column id="24" parent="19" name="id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="19" name="name">
       <Position>2</Position>
       <DataType>varchar(100 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="21" parent="18" name="score">
+    <column id="26" parent="19" name="score">
       <Position>3</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="22" parent="18" name="Score_Id_uindex">
+    <index id="27" parent="19" name="Score_Id_uindex">
       <Position>2</Position>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
