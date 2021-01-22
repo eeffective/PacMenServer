@@ -98,6 +98,15 @@ public class MessageController {
         SendMessageToPlayers(out, players);
     }
 
+    public void SendEndMessage(ArrayList<Player> players){
+        players = lobbyLogic.closeLobbyOfPlayer(players.get(0));
+        if (players == null)
+            return;
+        Message out = new Message();
+        out.messageType = MessageType.GAME_OVER;
+        SendMessageToPlayers(out, players);
+    }
+
     @MessageMapping("/powerupdone")
     public void removePower(Message messageIn) {
         Message out = new Message();

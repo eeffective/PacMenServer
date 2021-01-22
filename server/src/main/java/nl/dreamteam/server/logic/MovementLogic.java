@@ -49,6 +49,7 @@ public class MovementLogic {
         if(pacmanCollidesWithGhost(lobbyPlayer, nextPos, lobby.getPlayers(), lobby)){
                 if(!lobbyPlayer.getAlive()){
                     messageController.SendDeadMessage(lobby.getPlayers());
+                    messageController.SendEndMessage(lobby.getPlayers());
                 }
                 return;
 

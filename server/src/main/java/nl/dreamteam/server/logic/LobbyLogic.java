@@ -40,4 +40,16 @@ public class LobbyLogic {
         return lobby.getPlayers().stream().filter(p -> p.getUsername().equals(username)).findFirst().get();
     }
 
+    public ArrayList<Player> closeLobbyOfPlayer(Player player){
+        Lobby currentLobby = lobbies
+                .stream().filter(lobby -> lobby.getPlayers()
+                        .stream().anyMatch(player1 -> player1.getUsername() == player.getUsername())).findFirst().orElse(null);
+        ArrayList<Player> players = currentLobby.getPlayers();
+        for (Player p:players) {
+            p.setAlive(true);
+            p.setLives(3);
+        }
+        lobbies.remove(currentLobby);
+        return players;
+    }
 }
