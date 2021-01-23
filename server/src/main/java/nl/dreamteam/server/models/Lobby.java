@@ -80,4 +80,8 @@ public class Lobby {
         setRandomPositionsPlayer(player);
         player.getPosition().translate(squareWidth);
     }
+
+    public Player getPacman(){
+        return players.stream().filter(player -> player.getPlayerType() == PlayerType.PACMAN).findFirst().orElse(null);
+    }
 }

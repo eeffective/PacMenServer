@@ -47,14 +47,17 @@ public class MovementLogic {
         }
 
         if(pacmanCollidesWithGhost(lobbyPlayer, nextPos, lobby.getPlayers(), lobby)){
-                if(!lobbyPlayer.getAlive()){
-                    messageController.SendDeadMessage(lobby.getPlayers());
-                    messageController.SendEndMessage(lobby.getPlayers());
-                }
-                return;
+            if(!lobbyPlayer.getAlive()){
+                messageController.SendDeadMessage(lobby.getPlayers());
+                messageController.SendEndMessage(lobby.getPlayers());
+            }
+            return;
 
         } else if (ghostCollidesWithPacman(lobbyPlayer, nextPos, lobby.getPlayers(), lobby)) {
-            ;
+            if(lobby.getPacman() != null && !lobby.getPacman().getAlive()){
+                messageController.SendDeadMessage(lobby.getPlayers());
+                messageController.SendEndMessage(lobby.getPlayers());
+            }
         }
         Dot dot = collidesWithDot(convertedPos, lobby.getMap().getGameObjects());
         if(dot != null && lobbyPlayer.getPlayerType() == PlayerType.PACMAN) {
