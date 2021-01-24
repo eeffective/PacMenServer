@@ -1,13 +1,10 @@
-package BackendTests;
-
+package BackendTest;
 
 import nl.dreamteam.server.models.Lobby;
 import nl.dreamteam.server.models.Player;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 public class LobbyTests {
     Lobby lobby;

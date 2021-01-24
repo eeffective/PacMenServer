@@ -1,4 +1,4 @@
-package BackendTests;
+package BackendTest;
 
 import nl.dreamteam.server.logic.LobbyLogic;
 import nl.dreamteam.server.models.Lobby;

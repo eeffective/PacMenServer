@@ -1,4 +1,4 @@
-package BackendTests;
+package BackendTest;
 
 import nl.dreamteam.server.abstracts.GameObject;
 import nl.dreamteam.server.logic.MapGenerator;

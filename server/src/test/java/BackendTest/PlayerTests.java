@@ -1,4 +1,4 @@
-package BackendTests;
+package BackendTest;
 
 import nl.dreamteam.server.models.Player;
 import org.junit.Assert;
