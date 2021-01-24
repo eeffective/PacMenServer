@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MovementLogic {
+    public boolean useController = true;
 
     private final int movementDistance = 4;
 
@@ -47,7 +48,7 @@ public class MovementLogic {
         }
 
         if(pacmanCollidesWithGhost(lobbyPlayer, nextPos, lobby.getPlayers(), lobby)){
-                if(!lobbyPlayer.getAlive()){
+                if(!lobbyPlayer.getAlive() && useController){
                     messageController.SendDeadMessage(lobby.getPlayers());
                 }
                 return;
@@ -61,7 +62,9 @@ public class MovementLogic {
             GameObject[][] objects = lobby.getMap().getGameObjects();
             objects[dot.getPosition().getY()/Lobby.squareWidth][dot.getPosition().getX()/Lobby.squareWidth] = null;
             lobby.getMap().setGameObjects(objects);
-            messageController.UpdatePacmanDots(lobby.getPlayers(), dot);
+            if(useController) {
+                messageController.UpdatePacmanDots(lobby.getPlayers(), dot);
+            }
         }
         PowerUp pup = collidesWithPowerup(convertedPos, lobby.getMap().getGameObjects());
         if(pup != null && lobbyPlayer.getPlayerType() == PlayerType.PACMAN) {
@@ -69,11 +72,15 @@ public class MovementLogic {
             GameObject[][] objects = lobby.getMap().getGameObjects();
             objects[pup.getPosition().getY()/Lobby.squareWidth][pup.getPosition().getX()/Lobby.squareWidth] = null;
             lobby.getMap().setGameObjects(objects);
-            messageController.UpdatePowerUps(lobby.getPlayers(), pup);
+            if(useController) {
+                messageController.UpdatePowerUps(lobby.getPlayers(), pup);
+            }
         }
         move(lobbyPlayer, nextPos);
 
-        messageController.UpdatePlayerMovement(lobby.getPlayers());
+        if(useController) {
+            messageController.UpdatePlayerMovement(lobby.getPlayers());
+        }
     }
 
     private boolean isPerfectlyAligned(Position oldPosition, Direction direction){
