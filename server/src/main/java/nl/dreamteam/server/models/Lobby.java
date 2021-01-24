@@ -59,6 +59,7 @@ public class Lobby {
             player.setPosition(getRandomPositionTopLayer());
         }
     }
+
     private Position getRandomPositionTopLayer() {
         int range = 8;
         return new Position((int)Math.random() * 8 + 1, 1);
