@@ -52,13 +52,19 @@ public class MovementLogic {
                 messageController.SendDeadMessage(lobby.getPlayers());
                 messageController.SendEndMessage(lobby.getPlayers());
             }
+            if(useController) {
+                messageController.UpdatePlayerMovement(lobby.getPlayers());
+            }
             return;
-
         } else if (ghostCollidesWithPacman(lobbyPlayer, nextPos, lobby.getPlayers(), lobby)) {
-            if(lobby.getPacman() != null && !lobby.getPacman().getAlive()){
+            if(lobby.getPacman() != null && !lobby.getPacman().getAlive() && useController){
                 messageController.SendDeadMessage(lobby.getPlayers());
                 messageController.SendEndMessage(lobby.getPlayers());
             }
+            if(useController) {
+                messageController.UpdatePlayerMovement(lobby.getPlayers());
+            }
+            return;
         }
         Dot dot = collidesWithDot(convertedPos, lobby.getMap().getGameObjects());
         if(dot != null && lobbyPlayer.getPlayerType() == PlayerType.PACMAN) {

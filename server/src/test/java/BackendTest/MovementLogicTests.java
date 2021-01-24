@@ -1,6 +1,7 @@
 package BackendTest;
 
 import nl.dreamteam.server.Enums.Direction;
+import nl.dreamteam.server.Enums.PlayerType;
 import nl.dreamteam.server.controllers.MessageController;
 import nl.dreamteam.server.logic.LobbyLogic;
 import nl.dreamteam.server.logic.MovementLogic;
@@ -64,16 +65,41 @@ public class MovementLogicTests {
 
     @Test
     public void TestIfTryMoveStopsPlayerFromGoingThroughWallsAfterStartingTheGameAndMoving() {
-        movementLogic.tryMove(username, Direction.Right, lobby, messageController);
-        Position pos = lobby.getPlayer("test").getPosition();
-        movementLogic.tryMove(username, Direction.Up, lobby, messageController);
-        Assert.assertEquals(lobby.getPlayer(username).getPosition(), pos);
-        Assert.assertEquals(lobby.getPlayer("test").getScore(), 10);
-        Assert.assertEquals(Direction.Up, lobby.getPlayer("test").getCurrentDirection());
+        Position pos = new Position(1,1);
+        for(int i = 0; i < lobby.getPlayers().size(); i++) {
+            if (lobby.getPlayers().get(i).getPlayerType() == PlayerType.PACMAN) {
+                movementLogic.tryMove(lobby.getPlayers().get(i).getUsername(), Direction.Right, lobby, messageController);
+                pos = lobby.getPlayer(lobby.getPlayers().get(i).getUsername()).getPosition();
+                movementLogic.tryMove(lobby.getPlayers().get(i).getUsername(), Direction.Up, lobby, messageController);
+                Assert.assertEquals(lobby.getPlayers().get(i).getScore(), 10);
+                Assert.assertEquals(lobby.getPlayer(lobby.getPlayers().get(i).getUsername()).getPosition(), pos);
+                Assert.assertEquals(Direction.Up, lobby.getPlayer(lobby.getPlayers().get(i).getUsername()).getCurrentDirection());
+            }
+        }
     }
 
     @Test
-    public void TestIfCollisionMeansDeath() {
+    public void TestIfCollisionMeansLiveGetsTaken() {
+        lobby.getPlayer("test").setPosition(new Position(40,40));
+        lobby.getPlayer("playerTwo").setPosition(new Position(40,44));
+        movementLogic.tryMove("test", Direction.Down, lobby, messageController);
+        for(int i = 0; i < lobby.getPlayers().size(); i++) {
+            if(lobby.getPlayers().get(i).getPlayerType() == PlayerType.PACMAN) {
+                Assert.assertEquals(lobby.getPlayers().get(i).getLives(), 2);
+            } else {
+                Assert.assertEquals(lobby.getPlayers().get(i).getScore(), 250);
+            }
+        }
+    }
 
+    @Test
+    public void TestPowerUpCollision() {
+        for(int i = 0; i< lobby.getPlayers().size(); i++) {
+            if(lobby.getPlayers().get(i).getPlayerType() == PlayerType.PACMAN) {
+                lobby.getPlayers().get(i).setPosition(new Position(320, 284));
+                movementLogic.tryMove(lobby.getPlayers().get(i).getUsername(), Direction.Up, lobby, messageController);
+                Assert.assertEquals(lobby.getPlayers().get(i).isPowerUp(), true);
+            }
+        }
     }
 }
