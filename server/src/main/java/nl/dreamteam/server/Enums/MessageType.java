@@ -11,4 +11,5 @@ public enum MessageType {
     COLLIDE_POWERUP,
     POWERUP_DONE,
     CHAT,
+    GAME_OVER,
 }

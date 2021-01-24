@@ -3,8 +3,34 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BuildServerSettings">
+    <option name="LOGIN" value="" />
+    <option name="SERVER_URL" value="" />
+    <option name="COMMIT_PATTERN" value="{message}" />
+    <option name="REMEMBER_ME" value="true" />
+    <option name="USE_IDEA_PROXY_SETTINGS" value="true" />
+    <option name="INSPECTIONS_BUILD_TYPE_IDS" />
+    <option name="DUPLICATES_BUILD_TYPE_IDS" />
+    <option name="ENABLE_SUITABLE_CONFIGURATION_CACHING" value="true" />
+    <option name="COVERAGE_SETTINGS" />
+    <option name="TEST_STATUS_ENABLED" value="true" />
+    <option name="TEST_STATUS_SHOW_SUCCESSFUL" value="false" />
+    <option name="POSTPONE_SUITABLE_CONFIGURATIONS_SEARCH" value="false" />
+    <option name="ARTIFACTS_BUILD_TYPE_IDS" />
+    <option name="PERFORM_COMMIT_IF_SUCCESSFUL" value="true" />
+    <option name="PERFORM_COMMIT_IF_NO_NEW_FAILED_TESTS" value="false" />
+    <option name="REQUEST_CONFIRMATON" value="false" />
+    <option name="PRE_TESTED_COMMIT" value="true" />
+    <option name="FILTER_BY_STATUS" value="false" />
+    <option name="FILTER_MARKED_AS_FIXED" value="false" />
+    <option name="TOOL_WINDOW_SELECTED_CONTENT_INDEX" value="0" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="924e21fc-2479-4f18-9bc7-37cb06e7cc21" name="Default Changelist" comment="" />
+    <list default="true" id="924e21fc-2479-4f18-9bc7-37cb06e7cc21" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/dreamteam/server/logic/MovementLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/dreamteam/server/logic/MovementLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/dreamteam/server/models/Lobby.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/dreamteam/server/models/Lobby.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,7 +50,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Users\efali\.m2\wrapper\dists\apache-maven-3.6.3-bin\1iopthnavndlasol9gbrbg6bf2\apache-maven-3.6.3" />
+        <option name="mavenHome" value="C:\Users\Mark\.m2\wrapper\dists\apache-maven-3.6.3-bin\1iopthnavndlasol9gbrbg6bf2\apache-maven-3.6.3" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -35,23 +61,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../FUN3/KochFractal" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../rest" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="nl.dreamteam.server.ServerApplication" />
@@ -71,6 +90,11 @@
       <workItem from="1603719982819" duration="1220000" />
       <workItem from="1603721224133" duration="137000" />
       <workItem from="1603721401259" duration="734000" />
+      <workItem from="1611051688299" duration="285000" />
+      <workItem from="1611052004102" duration="1549000" />
+      <workItem from="1611233069577" duration="4070000" />
+      <workItem from="1611321642693" duration="2221000" />
+      <workItem from="1611393268658" duration="1708000" />
     </task>
     <servers />
   </component>
@@ -82,13 +106,77 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603720565637" />
+    <state x="541" y="504" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1611051711450">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="541" y="504" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1160/-1600.542.1600.860/1920.532.1440.860@0.0.1920.1160" timestamp="1611051711450" />
     <state x="677" y="149" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1603721659574">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="677" y="149" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603721659574" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1603722135379">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="740" y="307" key="FileChooserDialogImpl" timestamp="1611051841988">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603722135379" />
+    <state x="740" y="307" key="FileChooserDialogImpl/0.0.1920.1160/-1600.542.1600.860/1920.532.1440.860@0.0.1920.1160" timestamp="1611051841988" />
+    <state width="1877" height="396" key="GridCell.Tab.0.bottom" timestamp="1611394981136">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="396" key="GridCell.Tab.0.bottom/0.0.1920.1160/-1600.542.1600.860/1920.532.1440.860@0.0.1920.1160" timestamp="1611394981136" />
+    <state width="1877" height="396" key="GridCell.Tab.0.center" timestamp="1611394981136">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="396" key="GridCell.Tab.0.center/0.0.1920.1160/-1600.542.1600.860/1920.532.1440.860@0.0.1920.1160" timestamp="1611394981136" />
+    <state width="1877" height="396" key="GridCell.Tab.0.left" timestamp="1611394981135">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="396" key="GridCell.Tab.0.left/0.0.1920.1160/-1600.542.1600.860/1920.532.1440.860@0.0.1920.1160" timestamp="1611394981135" />
+    <state width="1877" height="396" key="GridCell.Tab.0.right" timestamp="1611394981136">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="396" key="GridCell.Tab.0.right/0.0.1920.1160/-1600.542.1600.860/1920.532.1440.860@0.0.1920.1160" timestamp="1611394981136" />
+    <state width="1877" height="396" key="GridCell.Tab.1.bottom" timestamp="1611394981136">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="396" key="GridCell.Tab.1.bottom/0.0.1920.1160/-1600.542.1600.860/1920.532.1440.860@0.0.1920.1160" timestamp="1611394981136" />
+    <state width="1877" height="396" key="GridCell.Tab.1.center" timestamp="1611394981136">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="396" key="GridCell.Tab.1.center/0.0.1920.1160/-1600.542.1600.860/1920.532.1440.860@0.0.1920.1160" timestamp="1611394981136" />
+    <state width="1877" height="396" key="GridCell.Tab.1.left" timestamp="1611394981136">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="396" key="GridCell.Tab.1.left/0.0.1920.1160/-1600.542.1600.860/1920.532.1440.860@0.0.1920.1160" timestamp="1611394981136" />
+    <state width="1877" height="396" key="GridCell.Tab.1.right" timestamp="1611394981136">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="396" key="GridCell.Tab.1.right/0.0.1920.1160/-1600.542.1600.860/1920.532.1440.860@0.0.1920.1160" timestamp="1611394981136" />
+    <state width="1877" height="396" key="GridCell.Tab.2.bottom" timestamp="1611394981136">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="396" key="GridCell.Tab.2.bottom/0.0.1920.1160/-1600.542.1600.860/1920.532.1440.860@0.0.1920.1160" timestamp="1611394981136" />
+    <state width="1877" height="396" key="GridCell.Tab.2.center" timestamp="1611394981136">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="396" key="GridCell.Tab.2.center/0.0.1920.1160/-1600.542.1600.860/1920.532.1440.860@0.0.1920.1160" timestamp="1611394981136" />
+    <state width="1877" height="396" key="GridCell.Tab.2.left" timestamp="1611394981136">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="396" key="GridCell.Tab.2.left/0.0.1920.1160/-1600.542.1600.860/1920.532.1440.860@0.0.1920.1160" timestamp="1611394981136" />
+    <state width="1877" height="396" key="GridCell.Tab.2.right" timestamp="1611394981136">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1877" height="396" key="GridCell.Tab.2.right/0.0.1920.1160/-1600.542.1600.860/1920.532.1440.860@0.0.1920.1160" timestamp="1611394981136" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/nl/dreamteam/server/logic/MovementLogic.java</url>
+          <line>162</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

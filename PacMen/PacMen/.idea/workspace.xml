@@ -41,7 +41,11 @@
     <option name="TOOL_WINDOW_SELECTED_CONTENT_INDEX" value="0" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49cb18b6-b847-4327-92cc-cf0b65edd46f" name="Default Changelist" comment="" />
+    <list default="true" id="49cb18b6-b847-4327-92cc-cf0b65edd46f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../server/.idea/libraries/Maven__org_ow2_asm_asm_5_0_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../server/.idea/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../server/.idea/server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../server/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,6 +82,7 @@
       <option name="presentableId" value="Default" />
       <updated>1603721252311</updated>
       <workItem from="1603721253433" duration="50000" />
+      <workItem from="1611051773211" duration="25000" />
     </task>
     <servers />
   </component>
@@ -94,6 +99,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="740" y="335" key="FileChooserDialogImpl" timestamp="1603721302174">
